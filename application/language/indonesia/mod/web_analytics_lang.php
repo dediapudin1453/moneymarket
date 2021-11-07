@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Web Analytics';
+$lang['mod_title_all'] = 'Semua Web Analytics';
+$lang['mod_title_add'] = 'Tambah Web Analytics';
+$lang['mod_title_edit'] = 'Sunting Web Analytics';
+$lang['table_id'] = 'Id';
+$lang['table_title'] = 'No';
+$lang['table_seotitle'] = 'Analitik';
+$lang['table_active'] = 'Tipe';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_title'] = 'Judul';
+$lang['form_label_seotitle'] = 'Judul Seo';
+$lang['form_label_content'] = 'Analitik';
+$lang['form_label_subtitle'] = 'Sub Judul';
+$lang['form_label_picture'] = 'Gambar';
+$lang['form_label_active'] = 'Aktif';
+$lang['form_message_add_success'] = 'Data Web Analytics telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Web Analytics telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Web Analytics telah berhasil dihapus';

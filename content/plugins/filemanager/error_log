@@ -1,0 +1,25 @@
+[28-Jan-2021 16:27:59 UTC] PHP Notice:  Undefined index: log_admin in /home/kqw5yzwxdlcw/public_html/content/plugins/filemanager/config/config.php on line 10
+[02-Oct-2021 12:49:50 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 496
+[02-Oct-2021 12:49:50 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 1429
+[02-Oct-2021 12:51:27 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 496
+[02-Oct-2021 12:51:27 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 1429
+[02-Oct-2021 12:52:41 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 496
+[02-Oct-2021 12:52:41 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 1429
+[02-Oct-2021 13:27:15 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 496
+[02-Oct-2021 13:27:15 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 1429
+[02-Oct-2021 13:29:31 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 496
+[02-Oct-2021 13:29:31 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 1429
+[03-Oct-2021 03:50:01 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 496
+[03-Oct-2021 03:50:01 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/content/plugins/filemanager/UploadHandler.php on line 1429
+[04-Oct-2021 09:00:24 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 496
+[04-Oct-2021 09:00:24 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 1429
+[04-Oct-2021 12:05:06 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 496
+[04-Oct-2021 12:05:06 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 1429
+[04-Oct-2021 12:07:01 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 496
+[04-Oct-2021 12:07:01 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 1429
+[06-Oct-2021 10:40:03 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 496
+[06-Oct-2021 10:40:03 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 1429
+[31-Oct-2021 23:46:32 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 496
+[31-Oct-2021 23:46:32 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 1429
+[31-Oct-2021 23:52:24 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 496
+[31-Oct-2021 23:52:24 Europe/Rome] PHP Notice:  Trying to access array offset on value of type null in /home/khvpf88vfk4d/public_html/moneymarketint.com/content/plugins/filemanager/UploadHandler.php on line 1429

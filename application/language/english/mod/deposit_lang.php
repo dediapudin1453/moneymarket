@@ -1,0 +1,25 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Deposit';
+$lang['mod_title_all'] = 'All Deposit';
+$lang['mod_title_add'] = 'Add New Deposit';
+$lang['mod_title_edit'] = 'Update Deposit';
+$lang['table_id'] = 'Id';
+$lang['table_name'] = 'Username';
+$lang['table_amount'] = 'Amount IDR & USD';
+$lang['table_amountusd'] = 'Amount USD';
+$lang['table_status'] = 'Status';
+$lang['table_date'] = 'Date';
+$lang['table_action'] = 'Action';
+$lang['form_label_name'] = 'Username';
+$lang['form_label_bank'] = 'Bank';
+$lang['form_label_norek'] = 'Acc Number';
+$lang['form_label_owner'] = 'Owner Name';
+$lang['form_label_amount'] = 'Amount';
+$lang['form_label_rate'] = 'Rate';
+$lang['form_label_usd'] = 'Amount USD';
+$lang['form_label_pict'] = 'Transfer Evidance';
+$lang['form_label_status'] = 'Status';
+$lang['form_message_add_success'] = 'Data Deposit has been successfully added';
+$lang['form_message_update_success'] = 'Data Deposit has been successfully updated';
+$lang['form_message_delete_success'] = 'Data Deposit has been successfully deleted';

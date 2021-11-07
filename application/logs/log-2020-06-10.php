@@ -1,0 +1,6 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2020-06-10 01:58:40 --> Query error: Column 'os' cannot be null - Invalid query: INSERT INTO `t_visitor` (`ip`, `platform`, `os`, `browser`, `country`, `city`, `date`, `hits`, `url`) VALUES ('182.50.135.35', '', NULL, '', 'US', 'Scottsdale', '2020-06-10', 1, '/rexchangermarkets.sql')
+ERROR - 2020-06-10 01:58:41 --> Query error: Column 'os' cannot be null - Invalid query: INSERT INTO `t_visitor` (`ip`, `platform`, `os`, `browser`, `country`, `city`, `date`, `hits`, `url`) VALUES ('182.50.135.35', '', NULL, '', 'US', 'Scottsdale', '2020-06-10', 1, '/rexchangermarkets.sql.gz')
+ERROR - 2020-06-10 01:58:42 --> Query error: Column 'os' cannot be null - Invalid query: INSERT INTO `t_visitor` (`ip`, `platform`, `os`, `browser`, `country`, `city`, `date`, `hits`, `url`) VALUES ('182.50.135.35', '', NULL, '', 'US', 'Scottsdale', '2020-06-10', 1, '/rexchangermarkets.')
+ERROR - 2020-06-10 01:58:43 --> Query error: Column 'os' cannot be null - Invalid query: INSERT INTO `t_visitor` (`ip`, `platform`, `os`, `browser`, `country`, `city`, `date`, `hits`, `url`) VALUES ('182.50.135.35', '', NULL, '', 'US', 'Scottsdale', '2020-06-10', 1, '/rexchangermarkets.')

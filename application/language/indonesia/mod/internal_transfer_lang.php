@@ -1,0 +1,23 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Internal Transfer';
+$lang['mod_title_all'] = 'Semua Internal Transfer';
+$lang['mod_title_add'] = 'Tambah Internal Transfer';
+$lang['mod_title_edit'] = 'Sunting Internal Transfer';
+$lang['table_id'] = 'Id';
+$lang['table_name'] = 'Username';
+$lang['table_amount'] = 'Jumlah';
+$lang['table_from'] = 'Asal';
+$lang['table_to'] = 'Tujuan';
+$lang['table_status'] = 'Status';
+$lang['table_date'] = 'Tanggal';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_name'] = 'Username';
+$lang['form_label_from'] = 'Asal';
+$lang['form_label_to'] = 'Tujuan';
+$lang['form_label_amount'] = 'Jumlah';
+$lang['form_label_status'] = 'Status';
+$lang['form_label_ket'] = 'Keterangan';
+$lang['form_message_add_success'] = 'Data Internal Transfer telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Internal Transfer telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Internal Transfer telah berhasil dihapus';

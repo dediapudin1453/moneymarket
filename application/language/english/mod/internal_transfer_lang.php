@@ -1,0 +1,23 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Internal Transfer';
+$lang['mod_title_all'] = 'All Internal Transfer';
+$lang['mod_title_add'] = 'Add New Internal Transfer';
+$lang['mod_title_edit'] = 'Update Internal Transfer';
+$lang['table_id'] = 'Id';
+$lang['table_name'] = 'Username';
+$lang['table_amount'] = 'Amount';
+$lang['table_from'] = 'From';
+$lang['table_to'] = 'To';
+$lang['table_status'] = 'Status';
+$lang['table_date'] = 'Tanggal';
+$lang['table_action'] = 'Action';
+$lang['form_label_name'] = 'Username';
+$lang['form_label_from'] = 'From';
+$lang['form_label_to'] = 'To';
+$lang['form_label_amount'] = 'Amount';
+$lang['form_label_status'] = 'Status';
+$lang['form_label_ket'] = 'Information';
+$lang['form_message_add_success'] = 'Data Internal Transfer has been successfully added';
+$lang['form_message_update_success'] = 'Data Internal Transfer has been successfully updated';
+$lang['form_message_delete_success'] = 'Data Internal Transfer has been successfully deleted';

@@ -1,0 +1,23 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Broker';
+$lang['mod_title_all'] = 'Semua Broker';
+$lang['mod_title_add'] = 'Tambah Broker';
+$lang['mod_title_edit'] = 'Sunting Broker';
+$lang['table_id'] = 'Id';
+$lang['table_name'] = 'Username';
+$lang['table_account'] = 'Akun';
+$lang['table_type'] = 'Tipe Akun';
+$lang['table_amount'] = 'Jumlah';
+$lang['table_status'] = 'Status Permintaan';
+$lang['table_date'] = 'Tanggal';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_name'] = 'Username';
+$lang['form_label_type'] = 'Akun Tipe';
+$lang['form_label_leverage'] = 'Leverage';
+$lang['form_label_status'] = 'Status Request';
+$lang['form_label_amount'] = 'Jumlah';
+$lang['form_label_acc'] = 'Account';
+$lang['form_message_add_success'] = 'Data Broker telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Broker telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Broker telah berhasil dihapus';

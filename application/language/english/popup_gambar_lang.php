@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Popup Picture';
+$lang['mod_title_all'] = 'All Popup Picture';
+$lang['mod_title_add'] = 'Add New Popup Picture';
+$lang['mod_title_edit'] = 'Update Popup Picture';
+$lang['table_id'] = 'Id';
+$lang['table_title'] = 'No';
+$lang['table_seotitle'] = 'Picture';
+$lang['table_active'] = 'Type';
+$lang['table_action'] = 'Action';
+$lang['form_label_title'] = 'Title';
+$lang['form_label_seotitle'] = 'Seotitle';
+$lang['form_label_content'] = 'Analytics';
+$lang['form_label_subtitle'] = 'Sub Title';
+$lang['form_label_picture'] = 'Picture';
+$lang['form_label_active'] = 'Active';
+$lang['form_message_add_success'] = 'Data Popup Picture has been successfully added';
+$lang['form_message_update_success'] = 'Data Popup Picture has been successfully updated';
+$lang['form_message_delete_success'] = 'Data Popup Picture has been successfully deleted';

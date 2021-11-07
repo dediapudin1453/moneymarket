@@ -1,0 +1,21 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Menu Website';
+$lang['mod_title_all'] = 'Semua Menu Website';
+$lang['mod_title_add'] = 'Tambah Menu Website';
+$lang['mod_title_edit'] = 'Sunting Menu Website';
+$lang['table_id'] = 'Id';
+$lang['table_title'] = 'Menu';
+$lang['table_url'] = 'URL';
+$lang['table_class'] = 'Icon';
+$lang['table_parent'] = 'Parent';
+$lang['table_active'] = 'Akif';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_title'] = 'Menu';
+$lang['form_label_url'] = 'URL';
+$lang['form_label_class'] = 'Icon';
+$lang['form_label_parent'] = 'Parent';
+$lang['form_label_active'] = 'Active';
+$lang['form_message_add_success'] = 'Data Menu Website telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Menu Website telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Menu Website telah berhasil dihapus';

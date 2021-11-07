@@ -1,0 +1,28 @@
+
+    .btn_edit_photo {
+    position: absolute;
+    color: #ddd;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 5px;
+    border-radius: 2px;
+    transition: 0.1s;
+}
+.btn_edit_photo:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+.btn {
+    font-size: 14px;
+}
+.btn-default {
+    background-color: #e2e6ea;
+    border-color: #ced4da;
+}
+.btn-default:not(:disabled):not(.disabled).active:focus,
+.btn-default:not(:disabled):not(.disabled):active:focus,
+.show > .btn-default.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
+}

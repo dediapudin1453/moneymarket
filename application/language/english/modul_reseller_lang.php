@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Modul Reseller';
+$lang['mod_title_all'] = 'All Modul Reseller';
+$lang['mod_title_add'] = 'Add New Modul Reseller';
+$lang['mod_title_edit'] = 'Update Modul Reseller';
+$lang['table_id'] = 'Id';
+$lang['table_title'] = 'Title';
+$lang['table_seotitle'] = 'Seotitle';
+$lang['table_type'] = 'Type';
+$lang['table_active'] = 'Active';
+$lang['table_action'] = 'Action';
+$lang['form_label_title'] = 'Title';
+$lang['form_label_seotitle'] = 'Seotitle';
+$lang['form_label_content'] = 'Content';
+$lang['form_label_picture'] = 'Picture';
+$lang['form_label_active'] = 'Active';
+$lang['form_message_add_success'] = 'Data Modul Reseller has been successfully added';
+$lang['form_message_update_success'] = 'Data Modul Reseller has been successfully updated';
+$lang['form_message_delete_success'] = 'Data Modul Reseller has been successfully deleted';

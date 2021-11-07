@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Pesan Whatsapp';
+$lang['mod_title_all'] = 'Semua Pesan Whatsapp';
+$lang['mod_title_add'] = 'Tambah Pesan Whatsapp';
+$lang['mod_title_edit'] = 'Sunting Pesan Whatsapp';
+$lang['table_id'] = 'Id';
+$lang['table_title'] = 'No';
+$lang['table_seotitle'] = 'Pesan';
+$lang['table_active'] = 'Tipe';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_title'] = 'Judul';
+$lang['form_label_seotitle'] = 'Judul Seo';
+$lang['form_label_content'] = 'Pesan';
+$lang['form_label_subtitle'] = 'Sub Judul';
+$lang['form_label_picture'] = 'Gambar';
+$lang['form_label_active'] = 'Aktif';
+$lang['form_message_add_success'] = 'Data Pesan Whatsapp telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Pesan Whatsapp telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Pesan Whatsapp telah berhasil dihapus';

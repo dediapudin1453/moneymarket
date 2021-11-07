@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Testimoni';
+$lang['mod_title_all'] = 'Semua Testimoni';
+$lang['mod_title_add'] = 'Tambah Testimoni';
+$lang['mod_title_edit'] = 'Sunting Testimoni';
+$lang['table_id'] = 'Id';
+$lang['table_name'] = 'Nama';
+$lang['table_comment'] = 'Testimoni';
+$lang['table_date'] = 'Tanggal';
+$lang['table_active'] = 'Akif';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_title'] = 'Nama';
+$lang['form_label_seotitle'] = 'Judul Seo';
+$lang['form_label_content'] = 'Testimoni';
+$lang['form_label_picture'] = 'Gambar';
+$lang['form_label_active'] = 'Aktif';
+$lang['form_message_add_success'] = 'Data Testimoni telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Testimoni telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Testimoni telah berhasil dihapus';

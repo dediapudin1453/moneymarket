@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['mod_title'] = 'Slider';
+$lang['mod_title_all'] = 'Semua Slider';
+$lang['mod_title_add'] = 'Tambah Slider';
+$lang['mod_title_edit'] = 'Sunting Slider';
+$lang['table_id'] = 'Id';
+$lang['table_title'] = 'Judul | Link';
+$lang['table_seotitle'] = 'Sub Judul';
+$lang['table_active'] = 'Akif';
+$lang['table_action'] = 'Aksi';
+$lang['form_label_title'] = 'Judul';
+$lang['form_label_seotitle'] = 'Judul Seo';
+$lang['form_label_content'] = 'Konten';
+$lang['form_label_subtitle'] = 'Sub Judul';
+$lang['form_label_picture'] = 'Gambar';
+$lang['form_label_active'] = 'Aktif';
+$lang['form_message_add_success'] = 'Data Slider telah berhasil ditambahkan';
+$lang['form_message_update_success'] = 'Data Slider telah berhasil diperbarui';
+$lang['form_message_delete_success'] = 'Data Slider telah berhasil dihapus';

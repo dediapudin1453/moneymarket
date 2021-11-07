@@ -1,6 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends Web_Controller {
+class Home extends Web_Controller
+{
 
 	public $vars;
 	public $mod = 'home';
@@ -15,66 +16,65 @@ class Home extends Web_Controller {
 		$this->load->model('web/contact_model');
 		$this->load->model('member_login_model', 'login_model');
 	}
-	
+
 
 	public function index()
 	{
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
-		{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			return $this->_submit();
 		}
-		if ($this->input->get('ref')!=null) {
-			$ref_link = $this->input->get('ref'); 
-            if (empty($this->input->cookie('referral',true))) {
-		       	// setcookie('referral', $ref_link,  time() + 60 * 60 * 24 * 30);
+		if ($this->input->get('ref') != null) {
+			$ref_link = $this->input->get('ref');
+			if (empty($this->input->cookie('referral', true))) {
+				// setcookie('referral', $ref_link,  time() + 60 * 60 * 24 * 30);
 
-				$cek = $this->db->get_where('t_user', array('username'=>$ref_link))->row_array();
+				$cek = $this->db->get_where('t_user', array('username' => $ref_link))->row_array();
 
 				if (!empty($cek)) {
 					$cookie = array(
-	                    'name'   => 'referral',
-	                    'value'  => $cek['id'],
-	                    'expire' => strtotime('+3 months'),
-	                );
-	                $this->input->set_cookie($cookie);
+						'name'   => 'referral',
+						'value'  => $cek['id'],
+						'expire' => strtotime('+3 months'),
+					);
+					$this->input->set_cookie($cookie);
 				}
 			} else {
 				$this->load->helper('cookie');
-				$cek_cookie = $this->db->get_where('t_user', array('id'=>$this->input->cookie('referral',true)))->row_array();
+				$cek_cookie = $this->db->get_where('t_user', array('id' => $this->input->cookie('referral', true)))->row_array();
 
 				if (empty($cek_cookie)) {
 					delete_cookie("referral");
 				}
 			}
 		} else {
-			if (!empty($this->input->cookie('referral',true))) {
+			if (!empty($this->input->cookie('referral', true))) {
 				$this->load->helper('cookie');
-				$cek_cookie = $this->db->get_where('t_user', array('id'=>$this->input->cookie('referral',true)))->row_array();
+				$cek_cookie = $this->db->get_where('t_user', array('id' => $this->input->cookie('referral', true)))->row_array();
 
 				if (empty($cek_cookie)) {
 					delete_cookie('referral');
-				} 
+				}
 			}
 		}
 
-		$this->vars['price']= $this->getPriceDua();
+		$this->vars['price'] = $this->getPriceDua();
 
 		$this->vars['slider'] 		= $this->db->get_where('t_slider', array('active' => 'Y'))->result();
 		$this->vars['step'] 		= $this->db->get_where('t_homepage', array('jenis' => 'step'))->row_array();
-		$this->vars['typeaccount'] 	= $this->db->get_where('t_homepage', array('jenis' => 'typeaccount', 'active'=>'Y'))->row_array();
-		$this->vars['news'] 		= $this->db->get_where('t_homepage', array('jenis' => 'news', 'active'=>'Y'))->row_array();
-		$this->vars['news2'] 		= $this->db->get_where('t_homepage', array('jenis' => 'news2', 'active'=>'Y'))->row_array();
-		$this->vars['market']		= $this->db->get_where('t_homepage', array('jenis' => 'market', 'active'=>'Y'))->row_array();
-		$this->vars['sdmtrainer']	= $this->db->get_where('t_homepage', array('jenis' => 'sdmtrainer', 'active'=>'Y'))->row_array();
+		$this->vars['typeaccount'] 	= $this->db->get_where('t_homepage', array('jenis' => 'typeaccount', 'active' => 'Y'))->row_array();
+		$this->vars['news'] 		= $this->db->get_where('t_homepage', array('jenis' => 'news', 'active' => 'Y'))->row_array();
+		$this->vars['news2'] 		= $this->db->get_where('t_homepage', array('jenis' => 'news2', 'active' => 'Y'))->row_array();
+		$this->vars['market']		= $this->db->get_where('t_homepage', array('jenis' => 'market', 'active' => 'Y'))->row_array();
+		$this->vars['sdmtrainer']	= $this->db->get_where('t_homepage', array('jenis' => 'sdmtrainer', 'active' => 'Y'))->row_array();
 
-		$this->vars['bagian2'] 		= $this->db->get_where('t_homepage', array('jenis' => 'bagian2', 'active'=>'Y'))->row_array();
-		$this->vars['bagian3'] 		= $this->db->get_where('t_homepage', array('jenis' => 'bagian3', 'active'=>'Y'))->row_array();
-		$this->vars['bagian4'] 		= $this->db->get_where('t_homepage', array('jenis' => 'bagian4', 'active'=>'Y'))->row_array();
-		$this->vars['bagian5']		= $this->db->get_where('t_homepage', array('jenis' => 'bagian5', 'active'=>'Y'))->row_array();
+		$this->vars['bagian2'] 		= $this->db->get_where('t_homepage', array('jenis' => 'bagian2', 'active' => 'Y'))->row_array();
+		$this->vars['bagian3'] 		= $this->db->get_where('t_homepage', array('jenis' => 'bagian3', 'active' => 'Y'))->row_array();
+		$this->vars['bagian4'] 		= $this->db->get_where('t_homepage', array('jenis' => 'bagian4', 'active' => 'Y'))->row_array();
+		$this->vars['bagian5']		= $this->db->get_where('t_homepage', array('jenis' => 'bagian5', 'active' => 'Y'))->row_array();
 
-		$this->vars['titleproduk'] = $this->db->get_where('t_homepage', array('jenis' => 'produk', 'active'=>'Y'))->row_array();
-		$this->vars['titletesti'] = $this->db->get_where('t_homepage', array('jenis' => 'testimoni', 'active'=>'Y'))->row_array();
-		
+		$this->vars['titleproduk'] = $this->db->get_where('t_homepage', array('jenis' => 'produk', 'active' => 'Y'))->row_array();
+		$this->vars['titletesti'] = $this->db->get_where('t_homepage', array('jenis' => 'testimoni', 'active' => 'Y'))->row_array();
+
 		$this->vars['product'] = $this->db->get_where('t_product', array('active' => 'Y'))->result();
 		$this->vars['headline'] = $this->home_model->get_headline();
 		$this->vars['testimoni'] = $this->db->get_where('t_testimoni', array('active' => 'Y'))->result();
@@ -101,13 +101,10 @@ class Home extends Web_Controller {
 
 	public function _submit()
 	{
-		if ( $this->captcha() == TRUE && googleCaptcha()->success == FALSE )
-		{
+		if ($this->captcha() == TRUE && googleCaptcha()->success == FALSE) {
 			$this->alert->set('contact', 'danger', 'Please complete the captcha');
 			redirect(uri_string());
-		}
-		else
-		{
+		} else {
 			$this->form_validation->set_rules(array(
 				array(
 					'field' => 'name',
@@ -145,27 +142,26 @@ class Home extends Web_Controller {
 				)
 			));
 
-			if ( $this->form_validation->run() ) 
-			{
-				$photo          = 'user-'.md5(strtotime(date('YmdHis'))).'.jpg';
+			if ($this->form_validation->run()) {
+				$photo          = 'user-' . md5(strtotime(date('YmdHis'))) . '.jpg';
 				$email          = $this->input->post('email', TRUE);
 				$username       = seotitle($this->input->post('username'));
-				$full_name      = $this->input->post('name',TRUE);
-				$tlpn      		= $this->input->post('phone',TRUE);
+				$full_name      = $this->input->post('name', TRUE);
+				$tlpn      		= $this->input->post('phone', TRUE);
 				$pass           = $this->input->post('password');
 				$password       = encrypt($pass);
-				$activation_key = md5('reg'.strtotime(date('YmdHis')).random_string('alnum', 4));
+				$activation_key = md5('reg' . strtotime(date('YmdHis')) . random_string('alnum', 4));
 				$website_name   = $this->settings->website('web_name');
 				$website_email  = $this->settings->website('web_email');
 
-				if (!empty($this->input->cookie('referral',true))) {
-					$referral_id  = $this->input->cookie('referral',true);
+				if (!empty($this->input->cookie('referral', true))) {
+					$referral_id  = $this->input->cookie('referral', true);
 
-					$cek_cookie = $this->db->get_where('t_user', array('id'=>$referral_id))->row_array();
+					$cek_cookie = $this->db->get_where('t_user', array('id' => $referral_id))->row_array();
 
 					if (empty($cek_cookie)) {
 						$referral_id  = "4";
-					} 
+					}
 				} else {
 					$referral_id  = "4";
 				}
@@ -186,21 +182,20 @@ class Home extends Web_Controller {
 
 				$this->login_model->create_wallet(array(
 					'user_id' => $usernya,
-					'amount' => '0'));
+					'amount' => '0'
+				));
 
 				$type = 'member';
 				$this->sendemailAdmin($type);
 
-				$this->session->set_flashdata('reg_success','1');
+				$this->session->set_flashdata('reg_success', '1');
 				redirect(member_url());
-			}
-			else
-			{
+			} else {
 				$error_content = validation_errors();
-				$this->alert->set('register','danger',$error_content);
+				$this->alert->set('register', 'danger', $error_content);
 				$this->session->set_flashdata('register', '<div uk-alert="" class="uk-alert-danger">
 				    <a class="uk-alert-close" uk-close></a>
-				    '.$error_content.'
+				    ' . $error_content . '
 				</div>
 				');
 				redirect(member_url('register'));
@@ -208,13 +203,14 @@ class Home extends Web_Controller {
 		}
 	}
 
-	public function sendemailAdmin($type) {
+	public function sendemailAdmin($type)
+	{
 
-    	$member_nama = $this->input->post('email', TRUE);
-    	$member_uname = seotitle($this->input->post('username'));
-    	$member_email = $this->input->post('email', TRUE);
+		$member_nama = $this->input->post('email', TRUE);
+		$member_uname = seotitle($this->input->post('username'));
+		$member_email = $this->input->post('email', TRUE);
 
-    	$website_name   = $this->settings->website('web_name');
+		$website_name   = $this->settings->website('web_name');
 		$website_email  = $this->settings->website('username');
 		$mailpas		= decrypt($this->settings->website('password'));
 		$mailhost		= $this->settings->website('hostname');
@@ -222,113 +218,99 @@ class Home extends Web_Controller {
 		$mailport 		= $this->settings->website('port');
 
 		// Konfigurasi email
-        $config = [
-           'mailtype'  => 'html',
-           'charset'   => 'utf-8',
-           'protocol'  => $mailproto,
-           'smtp_host' => $mailhost,
-           'smtp_user' => $website_email,   
-           'smtp_pass' => $mailpas,      
-           'smtp_port' => $mailport,
-           'crlf'      => "\r\n",
-           'newline'   => "\r\n"
-       	];
+		$config = [
+			'mailtype'  => 'html',
+			'charset'   => 'utf-8',
+			'protocol'  => $mailproto,
+			'smtp_host' => $mailhost,
+			'smtp_user' => $website_email,
+			'smtp_pass' => $mailpas,
+			'smtp_port' => $mailport,
+			'crlf'      => "\r\n",
+			'newline'   => "\r\n"
+		];
 
-        // Load library email dan konfigurasinya
-        $this->email->initialize($config);
-        $this->load->library('email', $config);
+		// Load library email dan konfigurasinya
+		$this->email->initialize($config);
+		$this->load->library('email', $config);
 
-        // Email dan nama pengirim
-        $this->email->from($website_email, $website_name);
+		// Email dan nama pengirim
+		$this->email->from($website_email, $website_name);
 
-        // Email penerima
-        $this->email->to('emailuntuktesting123@gmail.com'); // Ganti dengan email tujuan kamu
-        // Lampiran email, isi dengan url/path file
-        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+		// Email penerima
+		$this->email->to('emailuntuktesting123@gmail.com'); // Ganti dengan email tujuan kamu
+		// Lampiran email, isi dengan url/path file
+		// $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
 
-        if ($type==='ib') {
-        	// Subject email
-	        $this->email->subject('IB Registered');
+		if ($type === 'ib') {
+			// Subject email
+			$this->email->subject('IB Registered');
 
-	        // Isi email
-	       // $this->email->message('Klik unttuk verifikasi email anda : <a href="' . base_url() . 'login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
-	        // $this->email->message('test');
-	        // $this->email->message('test');
-	        $this->email->message('<html><body>
+			// Isi email
+			// $this->email->message('Klik unttuk verifikasi email anda : <a href="' . base_url() . 'login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+			// $this->email->message('test');
+			// $this->email->message('test');
+			$this->email->message('<html><body>
 								Yth. Bpk/Ibu <b> Admin </b>,<br /><br />
 								IB baru telah terdaftar dengan data sebagai berikut :<br>
-								Nama : '.$member_nama.'<br>
-								Username : IB-'.$member_uname.'<br>
-								Email : '.$member_email.' <br>
-								<br>silakan cek dilink berikut : <a href="'.admin_url("member").'"> cek user</a>
+								Nama : ' . $member_nama . '<br>
+								Username : IB-' . $member_uname . '<br>
+								Email : ' . $member_email . ' <br>
+								<br>silakan cek dilink berikut : <a href="' . admin_url("member") . '"> cek user</a>
 								</html></body>');
-        } else {
-        	// Subject email
-	        $this->email->subject('New Member Registered');
+		} else {
+			// Subject email
+			$this->email->subject('New Member Registered');
 
-	        // Isi email
-	       // $this->email->message('Klik unttuk verifikasi email anda : <a href="' . base_url() . 'login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
-	        // $this->email->message('test');
-	        // $this->email->message('test');
-	        $this->email->message('<html><body>
+			// Isi email
+			// $this->email->message('Klik unttuk verifikasi email anda : <a href="' . base_url() . 'login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+			// $this->email->message('test');
+			// $this->email->message('test');
+			$this->email->message('<html><body>
 								Yth. Bpk/Ibu <b> Admin </b>,<br /><br />
 								Member baru telah terdaftar dengan data sebagai berikut :<br>
-								Nama : '.$member_nama.'<br>
-								Username : '.$member_uname.'<br>
-								Email : '.$member_email.' <br>
-								<br>silakan cek dilink berikut : <a href="'.admin_url("member").'"> cek user</a>
+								Nama : ' . $member_nama . '<br>
+								Username : ' . $member_uname . '<br>
+								Email : ' . $member_email . ' <br>
+								<br>silakan cek dilink berikut : <a href="' . admin_url("member") . '"> cek user</a>
 								</html></body>');
-        }
+		}
 
-	        
-        $this->email->send();
-    }
 
-    public function _cek_reg_email($email='')
+		$this->email->send();
+	}
+
+	public function _cek_reg_email($email = '')
 	{
-		if ( empty($email) )
-		{
+		if (empty($email)) {
 			$this->form_validation->set_message('_cek_reg_email', '%s is required');
 			return FALSE;
-		} 
-
-		else
-		{
-			$input_email = encrypt(xss_filter($email,'xss'));
+		} else {
+			$input_email = encrypt(xss_filter($email, 'xss'));
 			$cekmail = $this->login_model->cek_reg_email($input_email);
 
-			if ( $cekmail == FALSE )
-			{
+			if ($cekmail == FALSE) {
 				$this->form_validation->set_message('_cek_reg_email', lang_line('err_mailexists'));
 				return FALSE;
-			} 
-			else 
-			{
+			} else {
 				return TRUE;
 			}
 		}
 	}
 
-	public function _cek_username_register($username = '') 
+	public function _cek_username_register($username = '')
 	{
-		if ( empty($username) )
-		{
+		if (empty($username)) {
 			$this->form_validation->set_message('_cek_username_register', '%s is required');
 			return FALSE;
-		} 
-
-		else
-		{
-			$input_username = encrypt(xss_filter($username,'xss'));
+		} else {
+			$input_username = encrypt(xss_filter($username, 'xss'));
 			$cekmail = $this->login_model->cek_reg_username($input_username);
 
-			if ( $cekmail == FALSE )
-			{
+			if ($cekmail == FALSE) {
 				$this->form_validation->set_message('_cek_username_register', 'Username Exist');
 				return FALSE;
-			} 
-			else 
-			{
+			} else {
 				return TRUE;
 			}
 		}
@@ -336,26 +318,26 @@ class Home extends Web_Controller {
 
 	public function setlang()
 	{
-		if ( $this->input->is_ajax_request() ) 
-		{
+		if ($this->input->is_ajax_request()) {
 			$session_lang['lang_active'] = $this->input->post('data');
 			$this->session->set_userdata($session_lang);
 			$response['status'] = true;
 			$this->json_output($response);
-		}
-		else
-		{
+		} else {
 			show_404();
 		}
 	}
 
-	public function getPrice(){ 
+	public function getPrice()
+	{
 
 		$running_price_lama = $this->db->get('t_running_price_satu')->result_array();
 
 		foreach ($running_price_lama as $key => $value) {
-			$datarp = array('price'=>$value['price'],
-							'date'=>$value['date']);
+			$datarp = array(
+				'price' => $value['price'],
+				'date' => $value['date']
+			);
 
 			$this->db->where('mata_uang', $value['mata_uang']);
 			$this->db->update('t_running_price_dua', $datarp);
@@ -383,43 +365,59 @@ class Home extends Web_Controller {
 		} else {
 			$price = json_decode($response, TRUE);
 
-			$data = array('price' => $price['price']["XAUUSD"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["XAUUSD"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'XAUUSD');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["GBPUSD"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["GBPUSD"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'GBPUSD');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["EURUSD"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["EURUSD"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'EURUSD');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["USDJPY"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["USDJPY"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'USDJPY');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["USDCAD"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["USDCAD"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'USDCAD');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["USDCHF"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["USDCHF"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'USDCHF');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["AUDUSD"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["AUDUSD"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'AUDUSD');
 			$this->db->update('t_running_price_satu', $data);
 
-			$data = array('price' => $price['price']["GBPJPY"],
-						  'date' => $price['timestamp']);
+			$data = array(
+				'price' => $price['price']["GBPJPY"],
+				'date' => $price['timestamp']
+			);
 			$this->db->where('mata_uang', 'GBPJPY');
 			$this->db->update('t_running_price_satu', $data);
 		}
@@ -428,7 +426,7 @@ class Home extends Web_Controller {
 
 		foreach ($tampil_runningprice as $key => $value) {
 
-			$tampil_runningprice_dua = $this->db->get_where('t_running_price_dua', array('mata_uang'=>$value['mata_uang']))->row_array();
+			$tampil_runningprice_dua = $this->db->get_where('t_running_price_dua', array('mata_uang' => $value['mata_uang']))->row_array();
 
 			if ($tampil_runningprice_dua['price'] < $value["price"]) {
 				$iclass = 'fas fa-angle-up in-icon-wrap small circle up';
@@ -441,12 +439,13 @@ class Home extends Web_Controller {
 				$spanclass = 'uk-text-success';
 			}
 			echo '<li>
-                    <i class="'.$iclass.'"></i> '.$value["mata_uang"].' <span class="'.$spanclass.'">'.$value["price"].'</span>
+                    <i class="' . $iclass . '"></i> ' . $value["mata_uang"] . ' <span class="' . $spanclass . '">' . $value["price"] . '</span>
                 </li>';
 		}
 	}
 
-	public function getPriceDua(){ 
+	public function getPriceDua()
+	{
 
 		$curl = curl_init();
 
@@ -474,9 +473,9 @@ class Home extends Web_Controller {
 		}
 	}
 
-	public function simple_registrasi() {
-		if ( $this->input->is_ajax_request() ) 
-		{
+	public function simple_registrasi()
+	{
+		if ($this->input->is_ajax_request()) {
 			$nama = $this->input->post('name', TRUE);
 			$email = $this->input->post('email', TRUE);
 			$tlpon = $this->input->post('phone', TRUE);
@@ -501,27 +500,27 @@ class Home extends Web_Controller {
 					'rules' => 'required|trim|max_length[15]|regex_match[/^[0-9]+$/]'
 				),
 				array(
-				    'field' => 'paket',
+					'field' => 'paket',
 					'label' => 'Paket',
 					'rules' => 'required|trim'
 				),
 				array(
-				    'field' => 'tema',
+					'field' => 'tema',
 					'label' => 'Tema',
 					'rules' => 'required|trim'
 				),
 				array(
-				    'field' => 'domain',
+					'field' => 'domain',
 					'label' => 'Domain',
 					'rules' => 'required|trim'
 				)
 			));
 			if ($this->form_validation->run()) {
-				$email_cek =  $this->db->get_where('t_data_pesan', array('email'=>$email))->row_array();
-				if ($email_cek==null) {
+				$email_cek =  $this->db->get_where('t_data_pesan', array('email' => $email))->row_array();
+				if ($email_cek == null) {
 					//4. mengecek no. hp
-					$hp_cek = $this->db->get_where('t_data_pesan', array('no_hp'=>$tlpon))->row_array();
-					if ($hp_cek==null) {
+					$hp_cek = $this->db->get_where('t_data_pesan', array('no_hp' => $tlpon))->row_array();
+					if ($hp_cek == null) {
 						$email     		= $email;
 						$name      		= $nama;
 						$phone			= $tlpon;
@@ -545,158 +544,166 @@ class Home extends Web_Controller {
 						$this->db->insert('t_data_pesan', $data_member);
 
 						// Konfigurasi email
-				        $config = [
-				               'mailtype'  => 'html',
-				               'charset'   => 'utf-8',
-				               'protocol'  => 'mail',
-				               'smtp_host' => 'mail.kelola.work',
-				               'smtp_user' => 'support@kelola.work',   
-				               'smtp_pass' => 'DediApudin123',      
-				               'smtp_port' => 465,
-				               'crlf'      => "\r\n",
-				               'newline'   => "\r\n"
-				           ];
+						$config = [
+							'mailtype'  => 'html',
+							'charset'   => 'utf-8',
+							'protocol'  => 'mail',
+							'smtp_host' => 'mail.kelola.work',
+							'smtp_user' => '',
+							'smtp_pass' => '',
+							'smtp_port' => 465,
+							'crlf'      => "\r\n",
+							'newline'   => "\r\n"
+						];
 
-				        // Load library email dan konfigurasinya
-				        $this->email->initialize($config);
-				        $this->load->library('email', $config);
+						// Load library email dan konfigurasinya
+						$this->email->initialize($config);
+						$this->load->library('email', $config);
 
-				        // Email dan nama pengirim
-				        $this->email->from('support@kelola.work', 'Kelola Website Praktis');
+						// Email dan nama pengirim
+						$this->email->from('support@kelola.work', 'Kelola Website Praktis');
 
-				        // Email penerima
-				        $this->email->to($email); // Ganti dengan email tujuan kamu
+						// Email penerima
+						$this->email->to($email); // Ganti dengan email tujuan kamu
 
-				        // Lampiran email, isi dengan url/path file
-				        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+						// Lampiran email, isi dengan url/path file
+						// $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
 
-				        // Subject email
-				        $this->email->subject('Pemesanan Website Praktis');
+						// Subject email
+						$this->email->subject('Pemesanan Website Praktis');
 
-				        // Isi email
-				       // $this->email->message('Klik unttuk verifikasi email anda : <a href="' . base_url() . 'login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
-				        // $this->email->message('test');
-				        $this->email->message('<html><body>
-											Yth. Bpk/Ibu <b>'. $full_name .'</b>,<br /><br />
+						// Isi email
+						// $this->email->message('Klik unttuk verifikasi email anda : <a href="' . base_url() . 'login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+						// $this->email->message('test');
+						$this->email->message('<html><body>
+											Yth. Bpk/Ibu <b>' . $full_name . '</b>,<br /><br />
 											Terima kasih telah memesan jasa pembuatan website praktis, .<br />
 											Berikut merupakan rincian pesanan anda : <br />
 											-------------------------------------------------------<br />
-											Paket   : '. $paket .'<br />
-											Tema 	: '. $tema .'<br />
-											Domain 	: '. $domain .'<br />
+											Paket   : ' . $paket . '<br />
+											Tema 	: ' . $tema . '<br />
+											Domain 	: ' . $domain . '<br />
 											-------------------------------------------------------<br /><br />
 											Atas nama : <br />
 											-------------------------------------------------------<br />
-											Nama 	: '. $nama .'<br />
-											Email 	: '. $email .'<br />
-											No. HP 	: '. $tlpon .'<br />
+											Nama 	: ' . $nama . '<br />
+											Email 	: ' . $email . '<br />
+											No. HP 	: ' . $tlpon . '<br />
 											-------------------------------------------------------<br /><br />
 											Silahkan lakukan konfirmasi dengan menghubungi nomor 087885355577.<br /><br />
 											Salam,<br />
-											<a href="'. site_url() .'" target="_blank" title="'. $website_name .'">'. $website_name .'</a>
+											<a href="' . site_url() . '" target="_blank" title="' . $website_name . '">' . $website_name . '</a>
 											</html></body>');
-				        if ($this->email->send()) {
-				        	$data = array(
-			                    'success' => true,
-			                    'message' => 'Pesanan Telah kami catat, silahkan cek email anda untuk konfirmasi!');
-			                echo json_encode($data);
-				        } else {
+						if ($this->email->send()) {
 							$data = array(
-			                    'success' => false,
-			                    'message' => $this->email->print_debugger());
-			                echo json_encode($data);				        
-			            }
-
-						
+								'success' => true,
+								'message' => 'Pesanan Telah kami catat, silahkan cek email anda untuk konfirmasi!'
+							);
+							echo json_encode($data);
+						} else {
+							$data = array(
+								'success' => false,
+								'message' => $this->email->print_debugger()
+							);
+							echo json_encode($data);
+						}
 					} else {
 						$data = array(
-		                    'success' => false,
-		                    'message' => 'No. HP sudah terdaftar, silahkan pakai No. HP lain!');
-		                echo json_encode($data);
+							'success' => false,
+							'message' => 'No. HP sudah terdaftar, silahkan pakai No. HP lain!'
+						);
+						echo json_encode($data);
 					}
 				} else {
 					$data = array(
-	                    'success' => false,
-	                    'message' => 'Email sudah terdaftar, silahkan pakai email lain!');
-	                echo json_encode($data);
+						'success' => false,
+						'message' => 'Email sudah terdaftar, silahkan pakai email lain!'
+					);
+					echo json_encode($data);
 				}
 			} else {
 				$data = array(
-	                'success' => false,
-	                'message' => validation_errors());
-	            echo json_encode($data);
+					'success' => false,
+					'message' => validation_errors()
+				);
+				echo json_encode($data);
 			}
-		}
-		else
-		{
+		} else {
 			show_404();
 		}
 	}
 
-	public function cek_email() {
-        $cek =  $this->db->get_where('t_data_pesan', array('email'=>$this->input->post('email', TRUE)))->row_array();
-        if ($this->input->post('email', TRUE)!=null) {
-            if ($cek==null) {
-                $data = array('success' => true,
-                              'message' => 'email dapat digunakan!');
-                echo json_encode($data);
-                return true;
-            } else {
-                $data = array('success' => false,
-                              'message' => 'email sudah digunakan!');
-                echo json_encode($data);
-                return false;
-            }
-        } else {
-            $data = array('success' => false,
-                          'message' => 'harap isikan email anda!');
-            echo json_encode($data);
-            return false;
-        }
-    }
-
-    public function cek_hp() {
-        $cek =  $this->db->get_where('t_data_pesan', array('no_hp'=>$this->input->post('phone', TRUE)))->row_array();
-        if ($this->input->post('phone', TRUE)!=null) {
-            if ($cek==null) {
-                $data = array('success' => true,
-                              'message' => 'no. hp dapat digunakan!');
-                echo json_encode($data);
-                return true;
-            } else {
-                $data = array('success' => false,
-                              'message' => 'no. hp sudah digunakan!');
-                echo json_encode($data);
-                return false;
-            }
-        } else {
-            $data = array('success' => false,
-                          'message' => 'harap isikan no. hp anda!');
-            echo json_encode($data);
-            return false;
-        }
-    }
-
-    public function _cek_phone_register($phone = '') 
+	public function cek_email()
 	{
-		if ( empty($phone) )
-		{
+		$cek =  $this->db->get_where('t_data_pesan', array('email' => $this->input->post('email', TRUE)))->row_array();
+		if ($this->input->post('email', TRUE) != null) {
+			if ($cek == null) {
+				$data = array(
+					'success' => true,
+					'message' => 'email dapat digunakan!'
+				);
+				echo json_encode($data);
+				return true;
+			} else {
+				$data = array(
+					'success' => false,
+					'message' => 'email sudah digunakan!'
+				);
+				echo json_encode($data);
+				return false;
+			}
+		} else {
+			$data = array(
+				'success' => false,
+				'message' => 'harap isikan email anda!'
+			);
+			echo json_encode($data);
+			return false;
+		}
+	}
+
+	public function cek_hp()
+	{
+		$cek =  $this->db->get_where('t_data_pesan', array('no_hp' => $this->input->post('phone', TRUE)))->row_array();
+		if ($this->input->post('phone', TRUE) != null) {
+			if ($cek == null) {
+				$data = array(
+					'success' => true,
+					'message' => 'no. hp dapat digunakan!'
+				);
+				echo json_encode($data);
+				return true;
+			} else {
+				$data = array(
+					'success' => false,
+					'message' => 'no. hp sudah digunakan!'
+				);
+				echo json_encode($data);
+				return false;
+			}
+		} else {
+			$data = array(
+				'success' => false,
+				'message' => 'harap isikan no. hp anda!'
+			);
+			echo json_encode($data);
+			return false;
+		}
+	}
+
+	public function _cek_phone_register($phone = '')
+	{
+		if (empty($phone)) {
 			$this->form_validation->set_message('_cek_phone_register', '%s is required');
 			return FALSE;
-		} 
-
-		else
-		{
-			$input_phone = encrypt(xss_filter($phone,'xss'));
+		} else {
+			$input_phone = encrypt(xss_filter($phone, 'xss'));
 			$cekmail = $this->login_model->cek_reg_phone($input_phone);
 
-			if ( $cekmail == FALSE )
-			{
+			if ($cekmail == FALSE) {
 				$this->form_validation->set_message('_cek_phone_register', 'Phone Number Exist');
 				return FALSE;
-			} 
-			else 
-			{
+			} else {
 				return TRUE;
 			}
 		}

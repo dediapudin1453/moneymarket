@@ -1,254 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img//apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img//favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title><?=$this->CI->meta_title;?></title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<?=content_url('plugins/linggafx.com/css/bootstrap.min.css')?>" rel="stylesheet" />
-  <link href="<?=content_url('plugins/linggafx.com/css/custom.css')?>" rel="stylesheet" />
-  <link href="<?=content_url('plugins/linggafx.com/css/paper-dashboard.css?v=2.1.1')?> " rel="stylesheet" />
+  <title><?= $this->CI->meta_title; ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="A fully featured money market international" name="description" />
+  <meta content="LinggaFX.com" name="author" />
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="<?php echo favicon(); ?>">
 
-  <?php if ($this->mod==='account_trading') { ?> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-    
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-  <?php } ?>
-    
+  <!-- third party css -->
+  <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/jquery-jvectormap-1.2.2.css') ?> " rel="stylesheet" type="text/css" />
+  <!-- third party css end -->
+
+  <!-- App css -->
+  <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/icons.min.css') ?>" rel="stylesheet" type="text/css" />
+  <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/app-modern.min.css') ?>" rel="stylesheet" type="text/css" id="light-style" />
+  <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/app-modern-dark.min.css') ?>" rel="stylesheet" type="text/css" id="dark-style" />
 
 </head>
 
-<body class="">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="primary" data-active-color="primary">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color=" default | primary | info | success | warning | danger |"
-    -->
-      <div class="logo">
-        <a href="<?= base_url() ?>" class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="<?= content_url('favicon/'.$this->settings->website('logo')); ?>">
-          </div>
-          <!-- <p>CT</p> -->
-        </a>
-        <a href="<?= base_url() ?>" class="simple-text logo-normal">
-          <?= $this->settings->website('web_name') ?>
-          <!--  <div class="logo-image-big">
-            <img src="<?=user_photo(data_login('member','photo'));?>">
-          </div>  -->
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="<?=user_photo(data_login('member','photo'));?>" />
-          </div>
-          <div class="info">
-            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span>
-                <?=data_login('member', 'name');?>
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="clearfix"></div>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li>
-                  <a href="<?=member_url('account')?>">
-                    <span class="sidebar-mini-icon">MP</span>
-                    <span class="sidebar-normal">My <?=lang_line('menu_account')?></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="<?=member_url('referral')?>">
-                    <span class="sidebar-mini-icon">MP</span>
-                    <span class="sidebar-normal">My Partner</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <ul class="nav">
-			<li class="nav-item <?=$this->CI->menu_class('home')?>">
-				<a href="<?=member_url('home')?>" class="nav-link">
-					<i class="nc-icon nc-bank"></i>
-					<p><?=lang_line('menu_dashboard')?></p>
-				</a>
-			</li>
-			<li class="nav-item <?=$this->CI->menu_class('payments')?>">
-				<a href="<?=member_url('deposit')?>" class="nav-link">
-					<i class="nc-icon nc-money-coins"></i>
-					<p>Deposit</p>
-				</a>
-			</li>
-			<li class="nav-item <?=$this->CI->menu_class('withdrawal')?>">
-				<a href="<?=member_url('withdrawal')?>" class="nav-link">
-					<i class="nc-icon nc-money-coins"></i>
-					<p>Withdrawal</p>
-				</a>
-			</li>
-			<li class="nav-item <?=$this->CI->menu_class('internal_transfer')?>">
-				<a href="<?=member_url('internal_transfer')?>" class="nav-link">
-					<i class="nc-icon nc-refresh-69"></i>
-					<p>Internal Transfer</p>
-				</a>
-			</li>
-			<li class="nav-item <?=$this->CI->menu_class('account_trading')?>">
-				<a href="<?=member_url('account_trading')?>" class="nav-link">
-					<i class="nc-icon nc-single-02"></i>
-					<p>Account Trading</p>
-				</a>
-			</li>
-			<li class="nav-item mobile-logoutx">
-				<a href="<?=member_url('logout')?>" class="nav-link">
-					<i class="nc-icon nc-button-power"></i>
-					<p><?=lang_line('menu_logout')?></p>
-				</a>
-			</li>
-		</ul>
+<body class="loading" data-layout="detached" data-layout-config='{"leftSidebarCondensed":false,"darkMode":false, "showRightSidebarOnStart": true}'>
 
-      </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-minimize">
-              <button id="minimizeSidebar" class="btn btn-icon btn-round">
-                <i class="nc-icon nc-minimal-right text-center visible-on-sidebar-mini"></i>
-                <i class="nc-icon nc-minimal-left text-center visible-on-sidebar-regular"></i>
-              </button>
-            </div>
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="javascript:;"> <?= $this->settings->website('web_name') ?> Cabinet</a>
+  <!-- Topbar Start -->
+  <div class="navbar-custom topnav-navbar topnav-navbar-dark">
+    <div class="container-fluid">
+
+      <!-- LOGO -->
+      <a href="index.html" class="topnav-logo">
+        <span class="topnav-logo-lg">
+          <img src="assets/images/logo-light.png" alt="" height="16">
+        </span>
+        <span class="topnav-logo-sm">
+          <img src="assets/images/logo_sm.png" alt="" height="16">
+        </span>
+      </a>
+
+      <ul class="list-unstyled topbar-menu float-end mb-0">
+
+        <li class="dropdown notification-list d-xl-none">
+          <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+            <i class="dripicons-search noti-icon"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+            <form class="p-3">
+              <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+            </form>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link btn-magnify"  target="_blank" href="<?php echo base_url(); ?>">
-                  <i class="nc-icon nc-tap-01"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Go to website</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="nc-icon nc-circle-10"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Profile</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="<?php echo base_url('l-member/account'); ?>">Profile</a>
-                  <a class="dropdown-item" href="<?php echo base_url('l-member/change-password'); ?>">Change Password</a>
-                  <a class="dropdown-item" href="<?php echo base_url('l-member/logout'); ?>">Sign out</a>
+        </li>
+
+        <li class="dropdown notification-list">
+          <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" id="topbar-notifydrop" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="dripicons-bell noti-icon"></i>
+            <span class="noti-icon-badge"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg" aria-labelledby="topbar-notifydrop">
+
+            <!-- item-->
+            <div class="dropdown-item noti-title">
+              <h5 class="m-0">
+                <span class="float-end">
+                  <a href="javascript: void(0);" class="text-dark">
+                    <small>Clear All</small>
+                  </a>
+                </span>Notification
+              </h5>
+            </div>
+
+            <div style="max-height: 230px;" data-simplebar>
+              <!-- item-->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon bg-primary">
+                  <i class="mdi mdi-comment-account-outline"></i>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content">
-        	<?php $this->CI->load_content(); ?>
-      </div>
-      <footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="credits ml-auto">
-              <span class="copyright">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by <?= $this->settings->website('web_name') ?>
-              </span>
+                <p class="notify-details">Caleb Flakelar commented on Admin
+                  <small class="text-muted">1 min ago</small>
+                </p>
+              </a>
+
+              <!-- item-->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon bg-info">
+                  <i class="mdi mdi-account-plus"></i>
+                </div>
+                <p class="notify-details">New user registered.
+                  <small class="text-muted">5 hours ago</small>
+                </p>
+              </a>
+
+              <!-- item-->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon">
+                  <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                </div>
+                <p class="notify-details">Cristina Pride</p>
+                <p class="text-muted mb-0 user-msg">
+                  <small>Hi, How are you? What about our next meeting</small>
+                </p>
+              </a>
+
+              <!-- item-->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon bg-primary">
+                  <i class="mdi mdi-comment-account-outline"></i>
+                </div>
+                <p class="notify-details">Caleb Flakelar commented on Admin
+                  <small class="text-muted">4 days ago</small>
+                </p>
+              </a>
+
+              <!-- item-->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon">
+                  <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                </div>
+                <p class="notify-details">Karen Robinson</p>
+                <p class="text-muted mb-0 user-msg">
+                  <small>Wow ! this admin looks good and awesome design</small>
+                </p>
+              </a>
+
+              <!-- item-->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon bg-info">
+                  <i class="mdi mdi-heart"></i>
+                </div>
+                <p class="notify-details">Carlos Crouch liked
+                  <b>Admin</b>
+                  <small class="text-muted">13 days ago</small>
+                </p>
+              </a>
             </div>
+
+            <!-- All-->
+            <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+              View All
+            </a>
+
           </div>
+        </li>
+
+
+
+        <li class="notification-list">
+          <a class="nav-link end-bar-toggle" href="javascript: void(0);">
+            <i class="dripicons-gear noti-icon"></i>
+          </a>
+        </li>
+
+        <li class="dropdown notification-list">
+          <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="account-user-avatar">
+              <img src="<?= user_photo(data_login('member', 'photo')); ?>" alt="user-image" class="rounded-circle">
+            </span>
+            <span>
+              <span class="account-user-name"> <?= data_login('member', 'name'); ?></span>
+              <span class="account-position">Verify</span>
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown" aria-labelledby="topbar-userdrop">
+            <!-- item-->
+            <div class=" dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome !</h6>
+            </div>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <i class="mdi mdi-account-circle me-1"></i>
+              <span>My Account</span>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <i class="mdi mdi-lock-outline me-1"></i>
+              <span>Lock Screen</span>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <i class="mdi mdi-logout me-1"></i>
+              <span>Logout</span>
+            </a>
+
+          </div>
+        </li>
+
+      </ul>
+      <a class="button-menu-mobile disable-btn">
+        <div class="lines">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-      </footer>
+      </a>
+
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="<?=content_url('plugins/linggafx.com/js/jquery.min.js')?> "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/popper.min.js')?>  "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/bootstrap.min.js')?> "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/perfect-scrollbar.jquery.min.js')?> "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/moment.min.js')?> "></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="<?=content_url('plugins/linggafx.com/js/bootstrap-switch.js')?> "></script>
-  <!--  Plugin for Sweet Alert -->
-  <script src="<?=content_url('plugins/linggafx.com/js/sweetalert2.min.js')?>"></script>
-  <!-- Forms Validations Plugin -->
-  <script src="<?=content_url('plugins/linggafx.com/js/jquery.validate.min.js')?> "></script>
-  <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="<?=content_url('plugins/linggafx.com/js/jquery.bootstrap-wizard.js')?> "></script>
-  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="<?=content_url('plugins/linggafx.com/js/bootstrap-selectpicker.js')?> "></script>
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="<?=content_url('plugins/linggafx.com/js/bootstrap-datetimepicker.js')?> "></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-  <script src="<?=content_url('plugins/linggafx.com/js/jquery.dataTables.min.js')?> "></script>
-  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="<?=content_url('plugins/linggafx.com/js/bootstrap-tagsinput.js')?> "></script>
-  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="<?=content_url('plugins/linggafx.com/js/jasny-bootstrap.min.js')?>"></script>
-  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src="<?=content_url('plugins/linggafx.com/js/fullcalendar.min.js')?> "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/daygrid.min.js')?> "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/timegrid.min.js')?> "></script>
-  <script src="<?=content_url('plugins/linggafx.com/js/interaction.min.js')?> "></script>
-  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="<?=content_url('plugins/linggafx.com/js/jquery-jvectormap.js')?> "></script>
-  <!--  Plugin for the Bootstrap Table -->
-  <script src="<?=content_url('plugins/linggafx.com/js/nouislider.min.js')?> "></script>
+  <!-- end Topbar -->
 
-  <!-- Chart JS -->
-  <script src="<?=content_url('plugins/linggafx.com/js/chartjs.min.js')?> "></script>
-  <!--  Notifications Plugin    -->
-  <script src="<?=content_url('plugins/linggafx.com/js/bootstrap-notify.js')?> "></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="<?=content_url('plugins/linggafx.com/js/paper-dashboard.js')?> " type="text/javascript"></script>
-  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="<?=content_url('plugins/linggafx.com/js/demo.js')?>"></script>
-  <script src="<?=content_url('modjs/hitung.js')?>"></script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
+  <!-- Start Content-->
+  <div class="container-fluid">
+
+    <!-- Begin page -->
+    <div class="wrapper">
+
+      <!-- ========== Left Sidebar Start ========== -->
+      <div class="leftside-menu leftside-menu-detached">
+
+        <div class="leftbar-user">
+          <a href="javascript: void(0);">
+            <img src="<?= user_photo(data_login('member', 'photo')); ?>" alt="user-image" height="42" class="rounded-circle shadow-sm">
+            <span class="leftbar-user-name"> <?= data_login('member', 'name'); ?></span>
+          </a>
+        </div>
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+
+          <li class="side-nav-title side-nav-item">Navigation</li>
 
 
-      demo.initVectorMap();
 
-    });
-  </script>
-  <script type="text/javascript"> 
-  		<?php if ($this->mod==='referral') { ?>
-		<script type="text/javascript">
-			$(document).ready( function () {
-			    $('#table_referral').DataTable();
-			} );
-		</script>
-	<?php } ?>
+          <li class="side-nav-item">
+            <a href="<?= member_url('home') ?>" class="side-nav-link">
+              <i class="uil-home-alt"></i>
+              <span> Dashboard </span>
+            </a>
+          </li>
 
-  </script>
-  
+          <li class="side-nav-title side-nav-item">Apps</li>
+
+          <li class="side-nav-item">
+            <a href="<?php echo base_url('l-member/account'); ?>" class="side-nav-link">
+              <i class="mdi mdi-account-heart"></i>
+              <span> My Profile </span>
+            </a>
+          </li>
+
+          <li class="side-nav-item">
+            <a href="a<?= member_url('referral') ?>" class="side-nav-link">
+              <i class="mdi mdi-account-group"></i>
+              <span> Referral </span>
+            </a>
+          </li>
+
+          <li class="side-nav-item">
+            <a href="<?= member_url('deposit') ?>" class="side-nav-link">
+              <i class="mdi mdi-wallet-plus-outline"></i>
+              <span> Deposit </span>
+            </a>
+          </li>
+
+          <li class="side-nav-item">
+            <a href="<?= member_url('account_trading') ?>" class="side-nav-link">
+              <i class="mdi mdi-chart-timeline-variant-shimmer"></i>
+              <span> Account Trading </span>
+            </a>
+          </li>
+
+
+
+          <li class="side-nav-item">
+            <a href="<?= member_url('internal_transfer') ?>" class="side-nav-link">
+              <i class="mdi mdi-sync-alert"></i>
+              <span> Internal Transfer </span>
+            </a>
+          </li>
+
+          <li class="side-nav-item">
+            <a href="<?= member_url('withdrawal') ?>" class="side-nav-link">
+              <i class="mdi mdi-cash-usd-outline"></i>
+              <span> Withdrawal </span>
+            </a>
+          </li>
+
+
+          <li class="side-nav-item">
+            <a href="<?= member_url('logout') ?>" class=" side-nav-link">
+              <i class="mdi mdi-logout me-1"></i>
+              <span> Log Out </span>
+            </a>
+          </li>
+
+
+        </ul>
+
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+        <!-- Sidebar -left -->
+
+      </div>
+      <!-- Left Sidebar End -->
+
+      <div class="content-page">
+        <div class="content">
+          <?php $this->CI->load_content(); ?>
+
+
+
+
+
+          <!-- end row -->
+        </div> <!-- End Content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <script>
+                  document.write(new Date().getFullYear())
+                </script> © Money Market International
+              </div>
+              <div class="col-md-6">
+                <div class="text-md-end footer-links d-none d-md-block">
+                  <a href="javascript: void(0);">About</a>
+                  <a href="javascript: void(0);">Support</a>
+                  <a href="javascript: void(0);">Contact Us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- end Footer -->
+
+      </div>
+      <!-- content-page -->
+
+    </div> <!-- end wrapper-->
+  </div>
+  <!-- END Container -->
+
+
+  <!-- Right Sidebar -->
+  <div class="end-bar">
+
+    <div class="rightbar-title">
+      <a href="javascript:void(0);" class="end-bar-toggle float-end">
+        <i class="dripicons-cross noti-icon"></i>
+      </a>
+      <h5 class="m-0">Settings</h5>
+    </div>
+
+    <div class="rightbar-content h-100" data-simplebar>
+
+      <div class="p-3">
+        <div class="alert alert-warning" role="alert">
+          <strong>Scheme </strong> light mode or dark mode
+        </div>
+
+        <!-- Settings -->
+        <h5 class="mt-3">Color Scheme</h5>
+        <hr class="mt-1" />
+
+        <div class="form-check form-switch mb-1">
+          <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="light" id="light-mode-check" checked />
+          <label class="form-check-label" for="light-mode-check">Light Mode</label>
+        </div>
+
+        <div class="form-check form-switch mb-1">
+          <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="dark" id="dark-mode-check" />
+          <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+        </div>
+
+        <!-- Left Sidebar-->
+        <h5 class="mt-4">Left Sidebar</h5>
+        <hr class="mt-1" />
+
+        <div class="form-check form-switch mb-1">
+          <input type="checkbox" class="form-check-input" name="compact" value="fixed" id="fixed-check" checked />
+          <label class="form-check-label" for="fixed-check">Scrollable</label>
+        </div>
+
+        <div class="form-check form-switch mb-1">
+          <input type="checkbox" class="form-check-input" name="compact" value="condensed" id="condensed-check" />
+          <label class="form-check-label" for="condensed-check">Condensed</label>
+        </div>
+      </div> <!-- end padding-->
+
+    </div>
+  </div>
+
+  <div class="rightbar-overlay"></div>
+  <!-- /End-bar -->
+
+
+  <!-- bundle -->
+  <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/vendor.min.js') ?>"></script>
+  <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/app.min.js') ?>"></script>
+
+  <!-- third party js -->
+  <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/apexcharts.min.js') ?>"></script>
+  <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/jquery-jvectormap-1.2.2.min.js') ?>"></script>
+  <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/jquery-jvectormap-world-mill-en.js') ?>"></script>
+  <!-- third party js ends -->
+
+  <!-- demo app -->
+  <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/demo.dashboard.js') ?> "></script>
+  <!-- end demo js-->
+
 </body>
 
 </html>

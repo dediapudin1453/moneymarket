@@ -98,11 +98,12 @@ class Login extends MY_Controller
                 $get_user_byusername = $this->login_model->get_user_username($data_input);
                 if (empty($get_user_byemail) && empty($get_user_byusername)) {
                     $this->alert->set('login', 'danger', 'Log In error.');
-                    $this->session->set_flashdata('login', '<div uk-alert="" class="uk-alert-danger">
-                        <a class="uk-alert-close" uk-close></a>
-                        Akun anda belum terverifikasi, silakan cek email anda untuk verifikasi!
-                    </div>
-                    ');
+                    $this->session->set_flashdata(
+                        'login',
+                        '<div class="alert alert-warning" role="alert">
+                            <i class="dripicons-warning me-2"></i> Your <strong>email</strong> not yet verification - check your email to verification!
+                        </div>'
+                    );
                     redirect(uri_string());
                 } else {
                     $get_user = $this->login_model->get_user($data_input);

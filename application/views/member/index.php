@@ -237,7 +237,7 @@
           </li>
 
           <li class="side-nav-item">
-            <a href="a<?= member_url('referral') ?>" class="side-nav-link">
+            <a href="<?= member_url('referral') ?>" class="side-nav-link">
               <i class="mdi mdi-account-group"></i>
               <span> Referral </span>
             </a>
@@ -397,6 +397,8 @@
 
   <!-- demo app -->
   <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/demo.dashboard.js') ?> "></script>
+
+
   <!-- end demo js-->
 
 </body>

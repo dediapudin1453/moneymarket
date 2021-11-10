@@ -1,10 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php echo $this->alert->show($this->mod); ?>
-<!-- new -->
-
-<!-- end new -->
-
-<!-- old -->
 <div class="row">
     <div class="col-md-7">
         <div class="card ">

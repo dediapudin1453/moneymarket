@@ -4,11 +4,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-    'dsn'       => 'mysql:host=localhost; dbname=moneymarket; charset=utf8;',
+    'dsn'       => 'mysql:host=localhost; dbname=moneymarketdb; charset=utf8;',
     'hostname' => 'localhost',
     'username' => 'root',
     'password' => '',
-    'database' => 'moneymarket',
+    'database' => 'moneymarketdb',
     'dbdriver' => 'pdo',
     'dbprefix' => '',
     'pconnect' => FALSE,

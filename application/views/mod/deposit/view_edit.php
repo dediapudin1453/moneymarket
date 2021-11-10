@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-inline">
 		<div class="page-title">
@@ -20,89 +20,89 @@
 	<div id="alert-notif" style="display:none;"></div>
 	<div class="block">
 		<div class="block-header">
-			<h3><?php echo lang_line('mod_title_edit');?></h3>
+			<h3><?php echo lang_line('mod_title_edit'); ?></h3>
 			<div class="pull-right">
-				<a href="<?php echo admin_url($this->mod);?>" class="button btn-default btn-sm"><i class="icon-arrow-left7 "></i> <?php echo lang_line('button_back');?></a>
+				<a href="<?php echo admin_url($this->mod); ?>" class="button btn-default btn-sm"><i class="icon-arrow-left7 "></i> <?php echo lang_line('button_back'); ?></a>
 			</div>
 		</div>
 		<div class="box-content">
-			<?=form_open('','id="form_update" autocomplete="off"');?>
-				<div class="row">
-					<div class="col-md-12">
-						<!-- Title -->
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_name') ?></label>
-							<div class="form-control post-title-input" readonly><?= $res_pages['username'] ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_bank') ?></label>
-							<div class="form-control post-title-input" readonly><?= $bank['bank_name'] ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_norek') ?></label>
-							<div class="form-control post-title-input" readonly><?= $bank['acc_number'] ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_owner') ?></label>
-							<div class="form-control post-title-input" readonly><?= $bank['owner_name'] ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_amount') ?></label>
-							<div class="form-control post-title-input" readonly>IDR <?= number_format($res_pages['amount'],0,',','.') ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_rate') ?></label>
-							<div class="form-control post-title-input" readonly>IDR <?= number_format($res_pages['rate_amount'],0,',','.') ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_usd') ?></label>
-							<div class="form-control post-title-input" readonly>USD <?= number_format($res_pages['amount_usd'],2,',','.') ?></div>
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_pict') ?></label>
-							<img src="<?= base_url('content/uploads/user/'.$res_pages['photo']) ?>">
-						</div>
-						<div class="form-group mb-4">
-							<label><?= lang_line('form_label_status') ?></label>
-							<select name="status" class="form-control post-title-input">
-								<option value="Pending" <?php if ($res_pages['status']=='Pending') {
-									echo "selected";
-								} ?>>Pending</option>
-								<option value="Approved" <?php if ($res_pages['status']=='Approved') {
-									echo "selected";
-								} ?>>Approved</option>
-								<option value="Rejected" <?php if ($res_pages['status']=='Rejected') {
-									echo "selected";
-								} ?>>Rejected</option>
-							</select>
-						</div>
+			<?= form_open('', 'id="form_update" autocomplete="off"'); ?>
+			<div class="row">
+				<div class="col-md-12">
+					<!-- Title -->
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_name') ?></label>
+						<div class="form-control post-title-input" readonly><?= $res_pages['username'] ?></div>
 					</div>
-					<hr>
-					<div>
-						<button type="submit" class="button btn-primary submit_update"><i class="fa fa-save mr-2"></i><?=lang_line('button_save');?></button>
-						<a href="<?=admin_url($this->mod);?>" class="button btn-default pull-right"><i class="fa fa-times mr-2"></i><?=lang_line('button_cancel');?></a>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_bank') ?></label>
+						<div class="form-control post-title-input" readonly><?= $bank['bank_name'] ?></div>
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_norek') ?></label>
+						<div class="form-control post-title-input" readonly><?= $bank['acc_number'] ?></div>
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_owner') ?></label>
+						<div class="form-control post-title-input" readonly><?= $bank['owner_name'] ?></div>
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_amount') ?></label>
+						<div class="form-control post-title-input" readonly>IDR <?= number_format($res_pages['amount'], 0, ',', '.') ?></div>
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_rate') ?></label>
+						<div class="form-control post-title-input" readonly>IDR <?= number_format($res_pages['rate_amount'], 0, ',', '.') ?></div>
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_usd') ?></label>
+						<div class="form-control post-title-input" readonly>USD <?= number_format($res_pages['amount_usd'], 2, ',', '.') ?></div>
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_pict') ?></label>
+						<img src="<?= base_url('content/uploads/user/' . $res_pages['photo']) ?>">
+					</div>
+					<div class="form-group mb-4">
+						<label><?= lang_line('form_label_status') ?></label>
+						<select name="status" class="form-control post-title-input">
+							<option value="Pending" <?php if ($res_pages['status'] == 'Pending') {
+														echo "selected";
+													} ?>>Pending</option>
+							<option value="Approved" <?php if ($res_pages['status'] == 'Approved') {
+															echo "selected";
+														} ?>>Approved</option>
+							<option value="Rejected" <?php if ($res_pages['status'] == 'Rejected') {
+															echo "selected";
+														} ?>>Rejected</option>
+						</select>
 					</div>
 				</div>
-			<?=form_close();?>
+				<hr>
+				<div>
+					<button type="submit" class="button btn-primary submit_update"><i class="fa fa-save mr-2"></i><?= lang_line('button_save'); ?></button>
+					<a href="<?= admin_url($this->mod); ?>" class="button btn-default pull-right"><i class="fa fa-times mr-2"></i><?= lang_line('button_cancel'); ?></a>
+				</div>
+			</div>
+			<?= form_close(); ?>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
 	function convertToRupiah(objek) {
-    	separator = ".";
-    	a = objek.value;
-    	b = a.replace(/[^\d]/g,"");
-    	c = "";
-    	panjang = b.length; 
-    	j = 0; 
-	    for (i = panjang; i > 0; i--) {
-	      	j = j + 1;
-	      	if (((j % 3) == 1) && (j != 1)) {
-	        	c = b.substr(i-1,1) + separator + c;
-	      	} else {
-	        	c = b.substr(i-1,1) + c;
-	      	}
-	    }
-	    objek.value = c;
-  	}   
+		separator = ".";
+		a = objek.value;
+		b = a.replace(/[^\d]/g, "");
+		c = "";
+		panjang = b.length;
+		j = 0;
+		for (i = panjang; i > 0; i--) {
+			j = j + 1;
+			if (((j % 3) == 1) && (j != 1)) {
+				c = b.substr(i - 1, 1) + separator + c;
+			} else {
+				c = b.substr(i - 1, 1) + c;
+			}
+		}
+		objek.value = c;
+	}
 </script>

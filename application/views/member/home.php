@@ -19,12 +19,12 @@
                     </a>
                 </form>
             </div> -->
-            <h4 class="page-title">Dashboard</h4>
+            <h4 class="page-title"><span class="badge bg-success rounded-pill">Welcome' <?= data_login('member', 'name'); ?></h4>
         </div>
     </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-xl-5">
         <div class="card">
             <div class="card-body">
@@ -47,12 +47,22 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
 
 
 <div class="row">
     <div class="col-xl-5 col-lg-6">
-
+        <?php if (empty($row_bank)) { ?>
+            <div class="alert alert-warning" role="alert">
+                Please update <a href="<?= member_url('account') ?>" class="alert-link">payment information</a>.
+            </div>
+        <?php } ?>
+        <?php if (empty($data['id_type']) || empty($data['id_number']) || empty($data['id_photo'])) { ?>
+            <div class="alert alert-warning" role="alert">
+                Please update <a href="<?= member_url('account') ?>" class="alert-link">Identity Card</a>.
+            </div>
+        <?php } ?>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card widget-flat">

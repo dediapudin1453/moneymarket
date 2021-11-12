@@ -25,10 +25,36 @@
 					<div class="card-body">
 						<img src="<?= user_photo(data_login('member', 'photo')); ?>" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
-						<h4 class="mb-0 mt-2"><?= data_login('member', 'name'); ?></h4>
-						<p class="text-muted font-14">Verify</p>
+						<h4 class="mb-0 mt-2"><?= data_login('member', 'name'); ?></h4><br>
+						<!-- Photo modal-->
+						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#photo-modal">Change Photo</button>
+						<div id="photo-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
 
+									<div class="modal-body">
+										<?php echo form_open_multipart(); ?>
+										<div class="modal-body">
+											<div class="form-group">
+												<!-- Picture -->
+												<div class="text-center mb-2">
+													<img id="image-preview" src="<?= user_photo(data_login('member', 'photo')); ?>" class="imgprv" style="max-width:200px;">
+												</div>
+												<div class="picture">
+													<input type="file" accept="image/*" name="fupload" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary upload">Save changes</button>
+										</div>
+										<?php echo form_close(); ?>
 
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
 						<div class="text-start mt-3">
 							<h4 class="font-13 text-uppercase"><?= lang_line('account_label_aboutme'); ?> :</h4>
 							<p class="text-muted font-13 mb-3">
@@ -95,8 +121,8 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<label for="tlpn" class="form-label"><?= lang_line('account_label_tlpn'); ?> </label>
-												<input type="text" class="form-control" name="tlpn" id="tlpn" data-toggle="input-mask" data-mask-format="(00) 000-0000-000-00" maxlength="14" value="<?= $row['tlpn']; ?>">
-												<span class="font-13 text-muted">e.g "(xx) xxxx-xxxx without "+"</span>
+												<input type="text" class="form-control" name="tlpn" maxlength="14" value="<?= $row['tlpn']; ?>">
+												<span class="font-13 text-muted">e.g "81x xxx xxx xxx without "0"</span>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -107,20 +133,13 @@
 										</div> <!-- end col -->
 									</div> <!-- end row -->
 
-									<div class="row">
-										<div class="col-md-12">
-											<div class="mb-3">
-												<label for="address" class="form-label"><?= lang_line('account_label_address'); ?> </label>
-												<input type="text" class="form-control" name="address" id="address" value="<?= $row['address']; ?>">
-											</div>
-										</div>
-									</div> <!-- end row -->
+
 
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mb-3">
-												<label for="tlpn" class="form-label"><?= lang_line('account_label_job'); ?> </label>
-												<input type="text" class="form-control" name="tlpn" id="tlpn" value="<?= $row['tlpn']; ?>">
+												<label for="username" class="form-label"><?= lang_line('account_label_username'); ?> </label>
+												<input type="text" class="form-control" name="username" id="tlpn" value="<?= $row['username']; ?>" disabled>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -150,6 +169,15 @@
 												<?php endif ?>
 											</div>
 										</div> <!-- end col -->
+									</div> <!-- end row -->
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="mb-3">
+												<label for="address" class="form-label"><?= lang_line('account_label_address'); ?> </label>
+												<input type="text" class="form-control" name="address" id="address" value="<?= $row['address']; ?>">
+											</div>
+										</div>
 									</div> <!-- end row -->
 
 									<div class=" row">
@@ -281,3 +309,84 @@
 	</div> <!-- End Content -->
 
 </div> <!-- content-page -->
+
+
+<!-- modal edit photo -->
+<div id="modal_edit_photo" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"><i class="fa fa-camera mr-2"></i> <?= lang_line('edit_photo') ?></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<?php echo form_open_multipart(); ?>
+				<div class="modal-body">
+					<div class="form-group">
+						<!-- Picture -->
+						<div class="text-center mb-2">
+							<img id="image-preview" src="<?= user_photo(data_login('member', 'photo')); ?>" class="imgprv" style="max-width:200px;">
+						</div>
+						<div class="custom-file">
+							<input id="picture" type="file" accept="image/*" name="fupload" class="custom-file-input" required>
+							<label class="custom-file-label" for="picture">
+								<span class="d-inline-block text-truncate w-75">Chose image...</span>
+							</label>
+						</div>
+						<!--/ Picture -->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary upload"><i class="fa fa-upload mr-2"></i> <?= lang_line('button_upload') ?></button>
+					<button type="button" class="btn btn-danger delete_photo"><i class="fa fa-trash mr-2"></i> <?= lang_line('button_delete') ?></button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-sign-out"></i> <?= lang_line('button_cancel') ?></button>
+				</div>
+				<?php echo form_close(); ?>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/ modal edit photo -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit Photo</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<?php echo form_open_multipart(); ?>
+			<div class="modal-body">
+				<div class="form-group">
+					<!-- Picture -->
+					<div class="text-center mb-2">
+						<img id="image-preview" src="<?= user_photo(data_login('member', 'photo')); ?>" class="imgprv" style="max-width:200px;">
+					</div>
+					<div class="picture">
+						<input type="file" accept="image/*" name="fupload" class="form-control" value="" id="wizard-picture">
+						<!-- Tambahkan class picture di dalam div input type nya -->
+					</div>
+					<!--/ Picture -->
+				</div>
+				<div class="picture-container">
+					<div class="picture">
+						<img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
+						<input type="file" accept="image/*" name="fupload" class="form-control" id="wizard-picture">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary upload"><i class="fa fa-upload mr-2"></i> <?= lang_line('button_upload') ?></button>
+				<button type="button" class="btn btn-danger delete_photo"><i class="fa fa-trash mr-2"></i> <?= lang_line('button_delete') ?></button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-sign-out"></i> <?= lang_line('button_cancel') ?></button>
+			</div>
+			<?php echo form_close(); ?>
+		</div>
+	</div>
+</div>

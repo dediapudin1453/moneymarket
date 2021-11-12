@@ -1,6 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Account extends Member_controller {
+class Account extends Member_controller
+{
 
 	public $mod = 'account';
 	public $mod_add = 'add-new';
@@ -9,7 +10,7 @@ class Account extends Member_controller {
 	public function __construct()
 	{
 		parent::__construct();
-		
+
 		$this->meta_title(lang_line('account_title'));
 		$this->load->model('member/account_model');
 	}
@@ -19,16 +20,12 @@ class Account extends Member_controller {
 	 * Fungsi untuk menampilkan halaman index account.
 	 * @access 	public
 	 * @return 	void
-	*/
-	public function index() 
+	 */
+	public function index()
 	{
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
-		{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			return $this->_upload();
-		}
-		
-		else
-		{		
+		} else {
 			$this->vars['row'] = $this->account_model->get_account();
 			$this->vars['row_bank'] = $this->account_model->get_bank();
 			$this->render_view('account', $this->vars);
@@ -39,7 +36,7 @@ class Account extends Member_controller {
 	 * Fungsi submit update account.
 	 * @access 	private
 	 * @return 	void
-	*/
+	 */
 	public function update_account()
 	{
 		$this->form_validation->set_rules(array(
@@ -80,8 +77,7 @@ class Account extends Member_controller {
 			)
 		));
 
-		if ( $this->form_validation->run() ) 
-		{
+		if ($this->form_validation->run()) {
 			$email = xss_filter($this->input->post('email', TRUE), 'xss');
 
 			$cek_email = $this->db
@@ -93,12 +89,11 @@ class Account extends Member_controller {
 			$currentMail = $cek_email->row_array()['email'];
 
 
-			if ( 
-			      $contMail == 1 &&
-			      $currentMail == data_login('member','email') || 
-			      $contMail != 1
-			    )
-			{
+			if (
+				$contMail == 1 &&
+				$currentMail == data_login('member', 'email') ||
+				$contMail != 1
+			) {
 				$phone = xss_filter($this->input->post('tlpn', TRUE), 'xss');
 
 				$cek_phone = $this->db
@@ -109,15 +104,14 @@ class Account extends Member_controller {
 				$contPhone = $cek_phone->num_rows();
 				$currentPhone = $cek_phone->row_array()['tlpn'];
 
-				$get_tlpn = $this->db->get_where('t_user', array('id'=>login_key('member')))->row_array()['tlpn'];
+				$get_tlpn = $this->db->get_where('t_user', array('id' => login_key('member')))->row_array()['tlpn'];
 
-				if ( 
-				      $contPhone == 1 &&
-				      $currentPhone	 == $get_tlpn || 
-				      $contPhone != 1
-				    )
-				{ 
-					$gender = ( $this->input->post('gender', TRUE) == 'M' ? 'M':'F' );
+				if (
+					$contPhone == 1 &&
+					$currentPhone	 == $get_tlpn ||
+					$contPhone != 1
+				) {
+					$gender = ($this->input->post('gender', TRUE) == 'M' ? 'M' : 'F');
 					$data   = array(
 						'email'    => xss_filter($this->input->post('email', TRUE), 'xss'),
 						'name'     => xss_filter($this->input->post('name', TRUE), 'xss'),
@@ -131,37 +125,33 @@ class Account extends Member_controller {
 					$this->account_model->update_profile($data);
 
 					$this->session->set_flashdata('pesan', '<div class="alert alert-success">
-					  '.lang_line('form_message_update_success').'.
+					  ' . lang_line('form_message_update_success') . '.
 					</div>');
 					redirect(member_url('account'));
 				} else {
 					$this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-					  '.lang_line('err_phoneexists').'.
+					  ' . lang_line('err_phoneexists') . '.
 					</div>');
 					redirect(member_url('account'));
 				}
-			}
-
-			else // Email has been registered.
+			} else // Email has been registered.
 			{
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-				  '.lang_line('err_mailexists').'.
+				  ' . lang_line('err_mailexists') . '.
 				</div>');
 				redirect(member_url('account'));
 			}
-		}
-		
-		else
-		{
+		} else {
 			$error_content = validation_errors();
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-			  '.$error_content.'.
+			  ' . $error_content . '.
 			</div>');
 			redirect(member_url('account'));
 		}
 	}
 
-	public function update_id() {
+	public function update_id()
+	{
 		$this->form_validation->set_rules(array(
 			array(
 				'field' => 'id_type',
@@ -180,8 +170,7 @@ class Account extends Member_controller {
 			)
 		));
 
-		if ( $this->form_validation->run() ) 
-		{
+		if ($this->form_validation->run()) {
 			$data   = array(
 				'id_type'  => xss_filter($this->input->post('id_type'), 'xss'),
 				'id_number'  => xss_filter($this->input->post('id_number'), 'xss'),
@@ -191,22 +180,20 @@ class Account extends Member_controller {
 			$this->account_model->update_profile($data);
 
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success">
-			  '.lang_line('form_message_update_success').'
+			  ' . lang_line('form_message_update_success') . '
 			</div>');
 			redirect(member_url('account'));
-		}
-		
-		else
-		{
+		} else {
 			$error_content = validation_errors();
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-			  '.$error_content.'.
+			  ' . $error_content . '.
 			</div>');
 			redirect(member_url('account'));
 		}
 	}
 
-	public function update_bank() {
+	public function update_bank()
+	{
 		$this->form_validation->set_rules(array(
 			array(
 				'field' => 'bank',
@@ -230,8 +217,7 @@ class Account extends Member_controller {
 			)
 		));
 
-		if ( $this->form_validation->run() ) 
-		{
+		if ($this->form_validation->run()) {
 			$data = array(
 				'user_id' => login_key('member'),
 				'bank_name'    => xss_filter($this->input->post('bank', TRUE), 'xss'),
@@ -247,19 +233,16 @@ class Account extends Member_controller {
 				$idbank = decrypt($this->input->post('idbank'));
 				$this->account_model->update_bank($idbank, $data);
 			}
-			
+
 
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success">
-			  '.lang_line('form_message_update_success').'
+			  ' . lang_line('form_message_update_success') . '
 			</div>');
 			redirect(member_url('account'));
-		}
-		
-		else
-		{
+		} else {
 			$error_content = validation_errors();
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-			  '.$error_content.'.
+			  ' . $error_content . '.
 			</div>');
 			redirect(member_url('account'));
 		}
@@ -269,44 +252,39 @@ class Account extends Member_controller {
 	 * Fungsi submit upload photo.
 	 * @access 	private
 	 * @return 	void
-	*/
+	 */
 	private function _upload()
 	{
-		if ( !empty($_FILES['fupload']['tmp_name']) ) // if isset image file.
+		if (!empty($_FILES['fupload']['tmp_name'])) // if isset image file.
 		{
 			$temp      = current($_FILES);
-			$img_name  = data_login('member','photo');
+			$img_name  = data_login('member', 'photo');
 			$extension = pathinfo($temp['name'], PATHINFO_EXTENSION);
 
 			$this->load->library('upload', array(
-				'upload_path'   => CONTENTPATH.'uploads/user/',
+				'upload_path'   => CONTENTPATH . 'uploads/user/',
 				'allowed_types' => "jpg|jpeg|png",
 				'file_name'     => $img_name,
 				'max_size'      => 1024 * 10, // 10mb
 				'overwrite'     => TRUE
 			));
 
-			if ( $this->upload->do_upload('fupload') )
-			{
+			if ($this->upload->do_upload('fupload')) {
 				$post_picture = "user/$img_name";
 
 				$this->load->library('simple_image');
 				$this->simple_image
-				     ->fromFile(CONTENTPATH.'uploads/'.$post_picture)
-				     ->thumbnail(200, 200, 'center')
-				     ->toFile(CONTENTPATH.'uploads/'.$post_picture);
-			}
-			else
-			{
+					->fromFile(CONTENTPATH . 'uploads/' . $post_picture)
+					->thumbnail(200, 200, 'center')
+					->toFile(CONTENTPATH . 'uploads/' . $post_picture);
+			} else {
 				$error_content = $this->upload->display_errors();
 				$this->alert->set($this->mod, 'danger', $error_content);
 			}
-		}
-		else
-		{
+		} else {
 			$this->alert->set($this->mod, 'danger', 'File not found');
 		}
-		
+
 		redirect(uri_string());
 	}
 
@@ -314,29 +292,22 @@ class Account extends Member_controller {
 	 * Fungsi submit delete photo.
 	 * @access 	public
 	 * @return 	void
-	*/
+	 */
 	public function delete_photo()
 	{
-		if ( $this->input->is_ajax_request() )
-		{
-			$photo = data_login('member','photo');
-			
-			if ( file_exists(CONTENTPATH."uploads/user/$photo") )
-			{
-				@unlink(CONTENTPATH."uploads/user/$photo");
+		if ($this->input->is_ajax_request()) {
+			$photo = data_login('member', 'photo');
+
+			if (file_exists(CONTENTPATH . "uploads/user/$photo")) {
+				@unlink(CONTENTPATH . "uploads/user/$photo");
 				$response['status'] = true;
 				$response['url'] = member_url($this->mod);
-			}
-			else
-			{
+			} else {
 				$response['status'] = false;
 			}
 
 			$this->json_output($response);
-		}
-
-		else
-		{
+		} else {
 			show_404();
 		}
 	}
@@ -345,12 +316,11 @@ class Account extends Member_controller {
 	 * Fungsi untuk menampikan halaman uba password.
 	 * @access 	public
 	 * @return 	void
-	*/
+	 */
 	public function password()
 	{
-		$this->meta_title = 'Member - '.lang_line('change_password');
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
-		{
+		$this->meta_title = 'Member - ' . lang_line('change_password');
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$this->form_validation->set_rules(array(
 				array(
 					'field' => 'old-pass',
@@ -373,8 +343,7 @@ class Account extends Member_controller {
 				)
 			));
 
-			if ( $this->form_validation->run() ) 
-			{
+			if ($this->form_validation->run()) {
 				$data = array(
 					'password' => encrypt($this->input->post('new-pass2'))
 				);
@@ -382,16 +351,12 @@ class Account extends Member_controller {
 				$this->account_model->update_profile($data);
 				$this->alert->set($this->mod, 'success', lang_line('pass_success'));
 				redirect(uri_string());
-			}
-			else
-			{
+			} else {
 				$error_content = validation_errors();
 				$this->alert->set($this->mod, 'danger', $error_content);
 				redirect(uri_string());
 			}
-		}
-		else
-		{
+		} else {
 			$this->render_view('account_password', $this->vars);
 		}
 	}
@@ -400,26 +365,19 @@ class Account extends Member_controller {
 	 * Fungsi untuk valifasi password.
 	 * @access 	public
 	 * @return 	void
-	*/
+	 */
 	public function _cek_pass($pass = '')
 	{
 		$in_pass = encrypt($pass);
 		$current_pass = data_login('member', 'password');
-		
-		if ( empty($pass) ) 
-		{
-			$this->form_validation->set_message('_cek_pass', '%s '.lang_line('err_required'));
+
+		if (empty($pass)) {
+			$this->form_validation->set_message('_cek_pass', '%s ' . lang_line('err_required'));
 			return FALSE;
-		} 
-
-		elseif ( decrypt($in_pass) == decrypt($current_pass) )
-		{
+		} elseif (decrypt($in_pass) == decrypt($current_pass)) {
 			return TRUE;
-		}
-
-		else 
-		{
-			$this->form_validation->set_message('_cek_pass', '%s '.lang_line('err_wrong'));
+		} else {
+			$this->form_validation->set_message('_cek_pass', '%s ' . lang_line('err_wrong'));
 			return FALSE;
 		}
 	}
@@ -428,11 +386,10 @@ class Account extends Member_controller {
 	 * Fungsi untuk delete account.
 	 * @access 	public
 	 * @return 	void
-	*/
+	 */
 	public function delete()
 	{
-		if ( $_SERVER['REQUEST_METHOD'] == 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$this->form_validation->set_rules(array(
 				array(
 					'field' => 'confirm',
@@ -440,38 +397,32 @@ class Account extends Member_controller {
 					'rules' => 'required|trim|min_length[4]|max_length[20]|callback__cek_pass'
 				)
 			));
-			
-			if ( $this->form_validation->run() )
-			{
-				@unlink(CONTENTPATH.'uploads/user/'.data_login('member','photo'));
+
+			if ($this->form_validation->run()) {
+				@unlink(CONTENTPATH . 'uploads/user/' . data_login('member', 'photo'));
 				$this->account_model->delete();
 				redirect(member_url('logout'));
-			}
-
-			else
-			{
+			} else {
 				$error_content = validation_errors();
-				$this->alert->set($this->mod,'danger',$error_content);
+				$this->alert->set($this->mod, 'danger', $error_content);
 				redirect(uri_string());
 			}
-		}
-		
-		else 
-		{
+		} else {
 			$this->render_view('account_delete', $this->vars);
 		}
 	}
 
-	public function validate_fotoid() {
-		
-		$this->load->library('upload');
-    	$user = $this->account_model->get_account();
+	public function validate_fotoid()
+	{
 
-    	$configured['upload_path'] = CONTENTPATH.'uploads/user/';
+		$this->load->library('upload');
+		$user = $this->account_model->get_account();
+
+		$configured['upload_path'] = CONTENTPATH . 'uploads/user/';
 		$configured['allowed_types'] = 'gif|png|jpg|jpeg';
 		$configured['encrypt_name'] = true;
 		// $configured['max_size'] = 20480; // 1MB
-		
+
 		$this->upload->initialize($configured);
 
 
@@ -486,5 +437,5 @@ class Account extends Member_controller {
 		}
 
 		return $data;
-    }
+	}
 } // End class.

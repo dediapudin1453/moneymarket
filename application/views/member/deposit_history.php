@@ -41,7 +41,14 @@
 									<td>IDR <?= number_format($value['amount']) ?></td>
 									<td>IDR <?= number_format($value['rate_amount']) ?></td>
 									<td>USD <?= number_format($value['amount_usd'], 2, '.', ',') ?></td>
-									<td><?= $value['status'] ?></td>
+									<td><?php if ($value['status'] == "Approved") {
+											echo '<span class="badge badge-success-lighten rounded-pill">Approved</span>';
+										} elseif ($value['status'] == "Pending") {
+											echo '<span class="badge badge-warning-lighten rounded-pill">Pending</span>';
+										} else {
+											echo '<span class="badge badge-danger-lighten rounded-pill">Rejected</span>';
+										}
+										?></td>
 								</tr>
 							<?php $no++;
 							} ?>

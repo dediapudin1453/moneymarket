@@ -55,7 +55,15 @@
 									USD <?= number_format($res['amount'], 2) ?>
 								</td>
 								<td>
-									<?= $res['status_request'] ?>
+									<!-- <?= $res['status_request'] ?> -->
+									<?php if ($res['status_request'] == "Approved") {
+										echo '<span class="badge badge-success-lighten rounded-pill">Approved</span>';
+									} elseif ($res['status_request'] == "Pending") {
+										echo '<span class="badge badge-warning-lighten rounded-pill">Pending</span>';
+									} else {
+										echo '<span class="badge badge-danger-lighten rounded-pill">Rejected</span>';
+									}
+									?>
 								</td>
 								<td>
 									<?= date('d-m-Y', strtotime($res['date'])) ?>

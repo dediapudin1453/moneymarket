@@ -31,10 +31,11 @@ class Deposit extends Member_controller
         if (empty($this->vars['bank_type'])) {
             $this->vars['deposit'] = $this->deposit_model->get_deposit();
             $this->render_view('deposit_history', $this->vars);
+        } else {
+            $this->vars['bank'] = $this->account_model->get_all_bank();
+            $this->vars['rate'] = $this->rate_model->get_rate('2');
+            $this->render_view('deposit', $this->vars);
         }
-        $this->vars['bank'] = $this->account_model->get_all_bank();
-        $this->vars['rate'] = $this->rate_model->get_rate('2');
-        $this->render_view('deposit', $this->vars);
     }
 
 

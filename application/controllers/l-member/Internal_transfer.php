@@ -29,8 +29,8 @@ class Internal_transfer extends Member_controller
 
         if ($this->input->get('t') === 'request') {
             $status_data = $this->account_model->get_account()['status_data'];
-    
-            if ($status_data==='Incomplete') {
+
+            if ($status_data === 'Incomplete') {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
     			  <strong>Warning!</strong> ' . lang_line('account_incomplete') . ' ' . lang_line('or') . ' ' . lang_line('verify') . ' 
     			</div>');
@@ -40,25 +40,26 @@ class Internal_transfer extends Member_controller
             $this->vars['account'] = $this->account_model->get_account_trading_active();
             $this->vars['receiver'] = $this->account_model->get_account_receiver();
             $this->render_view('internal_transfer', $this->vars);
+        } else {
+            $this->vars['internal'] = $this->internal_transfer_model->get_internaltf();
+            $this->render_view('internal_transfer_history', $this->vars);
         }
-        $this->vars['internal'] = $this->internal_transfer_model->get_internaltf();
-        $this->render_view('internal_transfer_history', $this->vars);
     }
 
     public function submit_internal_transfer()
     {
         $this->form_validation->set_rules(array(
-                array(
+            array(
                 'field' => 'from_internaltrf',
                 'label' => lang_line('itf_label_from'),
                 'rules' => 'required|trim'
             ),
-                array(
+            array(
                 'field' => 'to_internaltrf',
                 'label' => lang_line('itf_label_to'),
                 'rules' => 'required|trim'
             ),
-                array(
+            array(
                 'field' => 'amount_internaltrf',
                 'label' => lang_line('itf_label_amount'),
                 'rules' => 'required|trim'
@@ -74,7 +75,7 @@ class Internal_transfer extends Member_controller
             //jika sama-sama 
             if ($from_tf === $to_tf) {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-			  		<strong>Warning!</strong> ' . lang_line('itf_label_sama') . '.
+			  		<strong>Attention! </strong> ' . lang_line('itf_label_sama') . '.
 				</div>');
                 redirect(member_url('internal_transfer'));
             }
@@ -133,9 +134,11 @@ class Internal_transfer extends Member_controller
                                 'internal_transfer_id' => $internaltf_id
                             );
                             $this->account_model->insert_wallet_history($data_wallet_history);
-                            $activity = array('user_id' => login_key('member'),
+                            $activity = array(
+                                'user_id' => login_key('member'),
                                 'type' => 'Internal Transfer',
-                                'activity' => 'Request Internal Transfer');
+                                'activity' => 'Request Internal Transfer'
+                            );
                             $this->account_model->insert_activity($activity);
 
                             $this->sendemailAdmin();
@@ -143,8 +146,7 @@ class Internal_transfer extends Member_controller
 							  <strong>Success!' . lang_line('itf_label_sukses') . '</strong>
 							</div>');
                             redirect(member_url('internal_transfer'));
-                        }
-                        else {
+                        } else {
                             $receiver = $this->account_model->get_account_receiver($to_tf);
 
                             if (!empty($receiver)) {
@@ -158,9 +160,11 @@ class Internal_transfer extends Member_controller
                                 );
 
                                 $this->internal_transfer_model->insert_internaltf($data);
-                                $activity = array('user_id' => login_key('member'),
+                                $activity = array(
+                                    'user_id' => login_key('member'),
                                     'type' => 'Internal Transfer',
-                                    'activity' => 'Request Internal Transfer');
+                                    'activity' => 'Request Internal Transfer'
+                                );
                                 $this->account_model->insert_activity($activity);
                                 $this->sendemailAdmin();
 
@@ -168,8 +172,7 @@ class Internal_transfer extends Member_controller
 								  <strong>Success!' . lang_line('itf_label_sukses') . '</strong>
 								</div>');
                                 redirect(member_url('internal_transfer'));
-                            }
-                            else {
+                            } else {
                                 if ($to_tf === 'Broker') {
                                     $data = array(
                                         'user_id' => login_key('member'),
@@ -181,9 +184,11 @@ class Internal_transfer extends Member_controller
                                     );
 
                                     $this->internal_transfer_model->insert_internaltf($data);
-                                    $activity = array('user_id' => login_key('member'),
+                                    $activity = array(
+                                        'user_id' => login_key('member'),
                                         'type' => 'Internal Transfer',
-                                        'activity' => 'Request Internal Transfer');
+                                        'activity' => 'Request Internal Transfer'
+                                    );
                                     $this->account_model->insert_activity($activity);
                                     $this->sendemailAdmin();
 
@@ -191,8 +196,7 @@ class Internal_transfer extends Member_controller
 									  <strong>Success!' . lang_line('itf_label_sukses') . '</strong>
 									</div>');
                                     redirect(member_url('internal_transfer'));
-                                }
-                                else {
+                                } else {
                                     $cekusername = $this->db->get_where('t_user', array('username' => $to_tf))->row_array();
                                     if (!empty($cekusername)) {
                                         $data = array(
@@ -223,9 +227,11 @@ class Internal_transfer extends Member_controller
                                             'internal_transfer_id' => $internaltf_id
                                         );
                                         $this->account_model->insert_wallet_history($data_wallet_history);
-                                        $activity = array('user_id' => login_key('member'),
+                                        $activity = array(
+                                            'user_id' => login_key('member'),
                                             'type' => 'Internal Transfer',
-                                            'activity' => 'Request Internal Transfer');
+                                            'activity' => 'Request Internal Transfer'
+                                        );
                                         $this->account_model->insert_activity($activity);
                                         $this->sendemailAdmin();
 
@@ -233,8 +239,7 @@ class Internal_transfer extends Member_controller
 										  <strong>Success!' . lang_line('itf_label_sukses') . '</strong>
 										</div>');
                                         redirect(member_url('internal_transfer'));
-                                    }
-                                    else {
+                                    } else {
                                         $this->session->set_flashdata('pesan', '<div class="alert alert-danger"><strong>Warning!</strong> Error.
 										</div>');
                                         redirect(member_url('internal_transfer'));
@@ -242,8 +247,7 @@ class Internal_transfer extends Member_controller
                                 }
                             }
                         }
-                    }
-                    else {
+                    } else {
                         $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
 					  		<strong>Warning!</strong> ERROR
 						</div>');
@@ -263,8 +267,7 @@ class Internal_transfer extends Member_controller
 						  		<strong>Warning!</strong> ' . lang_line('itf_label_lainerror') . '.
 							</div>');
                             redirect(member_url('internal_transfer'));
-                        }
-                        else {
+                        } else {
 
                             //jika jumlah internal transfer lebih besar dari jumlah wallet
                             if ($amount > $account['amount']) {
@@ -315,9 +318,11 @@ class Internal_transfer extends Member_controller
                                     'internal_transfer_id' => $internaltf_id
                                 );
                                 $this->db->insert('t_account_trading_amount_history', $data_acc_history);
-                                $activity = array('user_id' => login_key('member'),
+                                $activity = array(
+                                    'user_id' => login_key('member'),
                                     'type' => 'Internal Transfer',
-                                    'activity' => 'Request Internal Transfer');
+                                    'activity' => 'Request Internal Transfer'
+                                );
                                 $this->account_model->insert_activity($activity);
                                 $this->sendemailAdmin();
 
@@ -325,16 +330,14 @@ class Internal_transfer extends Member_controller
 								  <strong>Success!' . lang_line('itf_label_sukses') . '</strong>
 								</div>');
                                 redirect(member_url('internal_transfer'));
-                            }
-                            else {
+                            } else {
                                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
 							  		<strong>Warning!</strong> ERROR
 								</div>');
                                 redirect(member_url('internal_transfer'));
                             }
                         }
-                    }
-                    else {
+                    } else {
                         $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
 					  		<strong>Warning!</strong> ERROR
 						</div>');
@@ -342,8 +345,7 @@ class Internal_transfer extends Member_controller
                     }
                 }
             }
-        }
-        else {
+        } else {
             $error_content = validation_errors();
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
 			  <strong>Warning!</strong> ' . $error_content . '.

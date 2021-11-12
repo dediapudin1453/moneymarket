@@ -34,7 +34,7 @@ class Account_trading extends Member_controller
         $this->meta_title = 'Member - Request Account Trading';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->form_validation->set_rules(array(
-                    array(
+                array(
                     'field' => 'account_type',
                     'label' => lang_line('acc_label_acc'),
                     'rules' => 'required|trim'
@@ -52,32 +52,31 @@ class Account_trading extends Member_controller
 
                 $this->account_model->insert_acc_req($data);
 
-                $activity = array('user_id' => login_key('member'),
+                $activity = array(
+                    'user_id' => login_key('member'),
                     'type' => 'Account Trading',
-                    'activity' => 'Request Account Trading');
+                    'activity' => 'Request Account Trading'
+                );
                 $this->account_model->insert_activity($activity);
 
                 $this->sendemailAdmin();
 
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success">
-				  <strong>Success!' . lang_line('acc_label_reqsukses') . '</strong>
+				  <strong>Request account success! ' . lang_line('acc_label_reqsukses') . '</strong>
 				</div>');
                 redirect(member_url('account_trading'));
-
-            }
-            else {
+            } else {
                 $error_content = validation_errors();
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
 				  <strong>Warning!</strong> ' . $error_content . '.
 				</div>');
                 redirect(member_url('account_trading'));
             }
-        }
-        else {
-            
+        } else {
+
             $status_data = $this->account_model->get_account()['status_data'];
-    
-            if ($status_data==='Incomplete') {
+
+            if ($status_data === 'Incomplete') {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
     			  <strong>Danger!</strong> ' . lang_line('account_incomplete') . ' ' . lang_line('or') . ' ' . lang_line('verify') . ' 
     			</div>');
@@ -86,11 +85,10 @@ class Account_trading extends Member_controller
             //cek wallet
             if (empty($this->account_model->get_wallet_history())) {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
-				  <strong>Please fill in your wallet first</strong>
+				  <strong>woops!! your wallet has not been deposited, please fill it in so you can request a trading account, <a href="https://https://moneymarketint.com/l-member/deposit">click here</a> to deposit</strong>
 				</div>');
                 redirect(member_url('account_trading'));
-            }
-            else {
+            } else {
                 $this->vars['product'] = $this->db->get('t_product')->result_array();
                 $this->render_view('account_trading_request', $this->vars);
             }

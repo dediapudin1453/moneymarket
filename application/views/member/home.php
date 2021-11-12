@@ -108,7 +108,7 @@
                         <h5 class="text-muted fw-normal mt-0" title="Growth">Wallet</h5>
                         <h3 class="mt-3 mb-3">$ <?= number_format($wallet['amount'], 2, '.', ',') ?></h3>
                         <p class="mb-0 text-muted">
-                            <span class="text-success me-2"><i class="uil uil-moneybag"></i> Your wallet</span>
+                            <span class="text-success me-2"><i class="uil uil-wallet"></i> Your wallet</span>
                         </p>
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->

@@ -164,7 +164,7 @@
             </div>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <a href="<?= member_url('account') ?>;" class="dropdown-item notify-item">
               <i class="mdi mdi-account-circle me-1"></i>
               <span>My Account</span>
             </a>
@@ -176,7 +176,7 @@
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <a href="<?= member_url('logout') ?>" class="dropdown-item notify-item">
               <i class="mdi mdi-logout me-1"></i>
               <span>Logout</span>
             </a>
@@ -231,21 +231,21 @@
 
           <li class="side-nav-item">
             <a href="<?php echo base_url('l-member/account'); ?>" class="side-nav-link">
-              <i class="mdi mdi-account-heart"></i>
+              <i class="uil uil-user"></i>
               <span> My Profile </span>
             </a>
           </li>
 
           <li class="side-nav-item">
             <a href="<?= member_url('referral') ?>" class="side-nav-link">
-              <i class="mdi mdi-account-group"></i>
+              <i class="uil uil-users-alt"></i>
               <span> Referral </span>
             </a>
           </li>
 
           <li class="side-nav-item">
             <a href="<?= member_url('deposit') ?>" class="side-nav-link">
-              <i class="mdi mdi-wallet-plus-outline"></i>
+              <i class="uil uil-money-insert"></i>
               <span> Deposit </span>
             </a>
           </li>
@@ -253,7 +253,7 @@
           <li class="side-nav-item">
             <a href="<?= member_url('account_trading') ?>" class="side-nav-link">
               <i class="mdi mdi-chart-timeline-variant-shimmer"></i>
-              <span> Account Trading </span>
+              <span> Trade Account </span>
             </a>
           </li>
 
@@ -268,7 +268,7 @@
 
           <li class="side-nav-item">
             <a href="<?= member_url('withdrawal') ?>" class="side-nav-link">
-              <i class="mdi mdi-cash-usd-outline"></i>
+              <i class="uil uil-money-withdrawal"></i>
               <span> Withdrawal </span>
             </a>
           </li>
@@ -397,6 +397,7 @@
 
   <!-- demo app -->
   <script src="<?= content_url('plugins/linggafx.com/hyper/assets/js/demo.dashboard.js') ?> "></script>
+  <script src="<?= content_url('modjs/hitung.js') ?>"></script>
 
 
   <!-- end demo js-->

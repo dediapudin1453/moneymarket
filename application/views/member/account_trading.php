@@ -8,7 +8,7 @@
 </div>
 <a href="<?= member_url('account_trading/account_request') ?>" class="btn btn-warning rounded-pill mb-3"><i class="mdi mdi-plus"></i> Request account trade</a>
 <?php echo $this->alert->show($this->mod); ?>
-
+<?= $this->session->flashdata('pesan') ?>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card ribbon-box">

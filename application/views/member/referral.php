@@ -12,7 +12,7 @@
 	<div class="col-md-12">
 		<div class="card ribbon-box ">
 			<div class="card-body">
-				<div class="ribbon ribbon-info float-start"><i class="mdi mdi-access-point me-1"></i>Share and reffer your friends</div>
+				<div class="ribbon ribbon-info float-start"><i class="mdi mdi-access-point me-1"></i>Share to your friends</div>
 				<input type="text" class="form-control" value="<?= member_url() ?>register/?ref=<?= $link['username'] ?>" id="referral" readonly> <br>
 				<!-- <button onclick="copy_data()" class="btn_submit_profile btn btn-success"><i class="fa fa-save mr-2"></i>Click to copy</button> -->
 

@@ -18,7 +18,15 @@
   <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/icons.min.css') ?>" rel="stylesheet" type="text/css" />
   <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/app-modern.min.css') ?>" rel="stylesheet" type="text/css" id="light-style" />
   <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/app-modern-dark.min.css') ?>" rel="stylesheet" type="text/css" id="dark-style" />
-
+  <script>
+    var _MOD = '<?= $this->mod; ?>';
+    var _KEY = '<?= $this->_key; ?>';
+    var _SITE_URL = '<?= site_url() ?>';
+    var _CONTENT_URL = '<?= content_url() ?>';
+    var _MEMBER_URL = '<?= member_url() ?>';
+    var _LANGACTIVE = '<?= $this->_language; ?>';
+    var _LANGTABLE = '<?= $this->datatable_lang; ?>';
+  </script>
 </head>
 
 <body class="loading" data-layout="detached" data-layout-config='{"leftSidebarCondensed":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -28,12 +36,12 @@
     <div class="container-fluid">
 
       <!-- LOGO -->
-      <a href="index.html" class="topnav-logo">
+      <a href="<?= base_url() ?>" class="topnav-logo">
         <span class="topnav-logo-lg">
-          <img src="assets/images/logo-light.png" alt="" height="16">
+          <img src="<?= content_url('favicon/' . $this->settings->website('logo')); ?>" alt="" height="45">
         </span>
         <span class="topnav-logo-sm">
-          <img src="assets/images/logo_sm.png" alt="" height="16">
+          <img src="<?= content_url('favicon/' . $this->settings->website('logo')); ?>" alt="" height="45">
         </span>
       </a>
 
@@ -51,10 +59,10 @@
         </li>
 
         <li class="dropdown notification-list">
-          <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" id="topbar-notifydrop" role="button" aria-haspopup="true" aria-expanded="false">
+          <!-- <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" id="topbar-notifydrop" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="dripicons-bell noti-icon"></i>
             <span class="noti-icon-badge"></span>
-          </a>
+          </a> -->
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg" aria-labelledby="topbar-notifydrop">
 
             <!-- item-->

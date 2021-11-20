@@ -199,7 +199,7 @@
 							<!-- end about me section content -->
 
 							<div class="tab-pane" id="identity_id">
-								<form class="form" action="<?= member_url('account/update_id') ?>" method="POST">
+								<form class="form" action="<?= member_url('account/update_id') ?>" method="POST" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mb-3">

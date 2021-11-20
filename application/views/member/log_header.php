@@ -11,6 +11,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?php echo favicon(); ?>">
 
+
     <!-- App css -->
     <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/icons.min.css') ?>" rel="stylesheet" type="text/css" />
     <link href="<?= content_url('plugins/linggafx.com/hyper/assets/css/app-modern.min.css') ?>" rel="stylesheet" type="text/css" id="light-style" />

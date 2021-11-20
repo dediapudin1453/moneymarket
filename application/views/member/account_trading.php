@@ -1,84 +1,76 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="row">
-	<div class="col-12">
-		<div class="page-title-box">
-			<h4 class="page-title">Your account trade</h4>
-		</div>
-	</div>
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Your account trade</h4>
+        </div>
+    </div>
 </div>
 <a href="<?= member_url('account_trading/account_request') ?>" class="btn btn-warning rounded-pill mb-3"><i class="mdi mdi-plus"></i> Request account trade</a>
 <?php echo $this->alert->show($this->mod); ?>
 <?= $this->session->flashdata('pesan') ?>
 <div class="row">
-	<div class="col-lg-12">
-		<div class="card ribbon-box">
-			<div class="card-body">
-				<div class="ribbon-content">
-					<table class="table table-striped table-centered mb-0">
-						<thead>
-							<tr>
-								<th class="no-sort text-center">
-									No
-								</th>
-								<th><?= lang_line('acc_label_acc') ?></th>
-								<th><?= lang_line('acc_label_type') ?></th>
-								<th><?= lang_line('acc_label_leverage') ?></th>
-								<th><?= lang_line('acc_label_amount') ?></th>
-								<th><?= lang_line('acc_label_status') ?></th>
-								<th><?= lang_line('acc_label_date') ?></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<?php $no = 1;
-								foreach ($acc as $key => $res) { ?>
-							<tr>
-								<td class="table-user">
-									<?= $no ?>
-								</td>
-								<td>
-									<?= $res['account'] ?>
-									<?php if (!empty($res['account'])) { ?>
-										<div><span>Password : <?= $res['password'] ?></span>
-											<p><span>Password : <?= $res['password_investor'] ?></span>
-										</div>
-									<?php } ?>
+    <div class="col-lg-12">
+        <div class="card ribbon-box">
+            <div class="card-body">
+                <div class="ribbon-content">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th class="no-sort text-center">
+                                    No
+                                </th>
+                                <th><?= lang_line('acc_label_acc') ?></th>
+                                <th><?= lang_line('acc_label_type') ?></th>
+                                <th><?= lang_line('acc_label_leverage') ?></th>
+                                <th><?= lang_line('acc_label_amount') ?></th>
+                                <th><?= lang_line('acc_label_status') ?></th>
+                                <th><?= lang_line('acc_label_date') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <?php $no = 1;
+                                foreach ($acc as $key => $res) { ?>
+                            <tr>
+                                <td class="table-user">
+                                    <?= $no ?>
+                                </td>
+                                <td>
+                                    <?= $res['account'] ?>
+                                    <?php if (!empty($res['account'])) { ?>
+                                        <div><span>Password : <?= $res['password'] ?></span>
+                                            <p><span>Password : <?= $res['password_investor'] ?></span>
+                                        </div>
+                                    <?php } ?>
 
-								</td>
-								<td>
-									<?= $res['type_account'] ?>
-								</td>
-								<td>
-									<?= $res['leverage'] ?>
-								</td>
-								<td>
-									USD <?= number_format($res['amount'], 2) ?>
-								</td>
-								<td>
-									<!-- <?= $res['status_request'] ?> -->
-									<?php if ($res['status_request'] == "Approved") {
-										echo '<span class="badge badge-success-lighten rounded-pill">Approved</span>';
-									} elseif ($res['status_request'] == "Pending") {
-										echo '<span class="badge badge-warning-lighten rounded-pill">Pending</span>';
-									} else {
-										echo '<span class="badge badge-danger-lighten rounded-pill">Rejected</span>';
-									}
-									?>
-								</td>
-								<td>
-									<?= date('d-m-Y', strtotime($res['date'])) ?>
-								</td>
-							</tr>
-						<?php $no++;
-								} ?>
+                                </td>
+                                <td>
+                                    <?= $res['type_account'] ?>
+                                </td>
+                                <td>
+                                    <?= $res['leverage'] ?>
+                                </td>
+                                <td>
+                                    USD <?= number_format($res['amount'], 2) ?>
+                                </td>
+                                <td>
+                                    <?= $res['status_request'] ?>
+                                </td>
+                                <td>
+                                    <?= date('d-m-Y', strtotime($res['date'])) ?>
+                                </td>
+                            </tr>
+                        <?php $no++;
+                                } ?>
 
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div> <!-- end card-body -->
-		</div> <!-- end card-->
-	</div> <!-- end col -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end card-body -->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
 </div>
 <!-- <div class="row">
 	<div class="col-md-12">
@@ -110,7 +102,7 @@
 						</thead>
 						<tbody>
 							<?php $no = 1;
-							foreach ($acc as $key => $res) { ?>
+                            foreach ($acc as $key => $res) { ?>
 								<tr>
 									<td>
 										<?= $no ?>
@@ -141,7 +133,7 @@
 									</td>
 								</tr>
 							<?php $no++;
-							} ?>
+                            } ?>
 						</tbody>
 					</table>
 				</div>
